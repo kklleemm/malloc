@@ -1,0 +1,11 @@
+malloc step:
+       -search in zones the first who can accept a ptr with size_t size:
+               -if nothing zone, create it
+       -create new struct, place size, and is_free = 0
+       -ptr - 1 = &struct
+       -zone.size -= size
+       -return ptr
+
+free step:
+       -if (ptr - 1)->is_free == 1 then double free
+       -(ptr - 1)->is_free = 1
