@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 10:01:19 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/06 17:16:15 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/06 17:44:18 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 /*
  * Vous pouvez avoir une variable globale pour gérer vos allocations et une pour le
  * thread-safe.
+ * == protection de la structure partagee pour qu'elle soit utilisee par un seul
+ *  thread ???
  */
+
+glo
 
 void		*ft_malloc(size_t size)
 {

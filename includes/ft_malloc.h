@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 09:41:22 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/06 17:14:58 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/06 17:40:13 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 
 # include <stdio.h>
 # include <sys/mman.h>
+# include <sys/resource.h>
+# include <sys/time.h> 
 # include <unistd.h>
 # include <stdlib.h>
+# include <pthread.h>
 # include "../libft/libft.h"
 
 # define	ALLOC_FLAGS	MAP_PRIVATE | MAP_ANON
