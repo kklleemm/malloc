@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 10:01:19 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/05 10:22:24 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/06 10:38:45 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,46 @@ void		*ft_malloc(size_t size)
 {
 	void	*ret;
 
-	if (size <= tiny_size())
-		ret = mmap(0, tiny_size(), 0, 0, 0, 0); // ??
+	puts("cc");
+//	if (size <= tiny_size())
+	ret = mmap(0, tiny_size(), PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0); // ??
+	puts("cc");
 	return (ret);
 }
 
+char	*ft_strdup2(const char *s1)
+{
+	char	*str;
+	int		i;
+
+	i = 0;
+	if (s1 == NULL)
+		return (NULL);
+	while (s1[i])
+		i++;
+	puts("cc");
+	if ((str = (char *)ft_malloc(sizeof(*str) * i + 1)) == NULL)
+		return (NULL);
+	i = 0;
+	while (s1[i] != '\0')
+	{
+		str[i] = s1[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}
+
+int		main(int ac, char **av)
+{
+	char	*tamer;
+
+	tamer = ft_strdup2("LEL");
+	ft_putendl(tamer);
+	return (0);
+}
+
+/*
 int			main(int ac, char **av)
 {
 	int		i;
@@ -44,6 +79,6 @@ int			main(int ac, char **av)
 		str[i] = c;
 	str[i] = '\0';
 	printf("%s\n", str);
-//	printf("%d\n", getpagesize()); // ce truc renvoie 4096
 	return (0);
 }
+*/
