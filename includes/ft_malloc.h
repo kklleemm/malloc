@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 09:41:22 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/06 18:35:05 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/07 15:43:05 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,22 @@
 
 # define	ALLOC_FLAGS	MAP_PRIVATE | MAP_ANON
 
+typedef struct		s_block
+{
+	short			is_free;
+	struct s_block	*next;
+}					t_block;
+
+typedef struct		s_page	// page_size = 4096
+{
+	short			type;	// TINY / SMALL / LARGE
+	struct s_page	*next;
+	struct s_block	*first;
+	int				nb_block;	// 1 bloc = 1 malloc
+}					t_page;
+
 void		free(void *ptr);
+void		ft_free(void *ptr);
 void		*malloc(size_t size);
 void		*realloc(void *ptr, size_t size);
 void		*ft_malloc(size_t size);

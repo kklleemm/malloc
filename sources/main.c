@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 10:01:19 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/06 18:40:21 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/07 15:43:52 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,15 @@ char	*ft_strdup2(const char *s1)
 
 int		main(int ac, char **av)
 {
-	char	*tamer;
+	char	*sampletext;
 
-	tamer = ft_strdup2("LEL");
-	ft_putendl(tamer);
-	ft_atoi_hex(tamer);
+	sampletext = ft_strdup2("LEL");
+	ft_atoi_hex((void *)&sampletext);
 	puts("");
-	ft_atoi_hex(tamer + sizeof tamer);
-	printf("\n%p\n", tamer);
-	printf("%p\n", tamer + sizeof tamer);
+	ft_atoi_hex((void *)&sampletext + sizeof sampletext);
+	printf("\n%p\n", (void *)&sampletext);
+	printf("%p\n", (void *)&sampletext + sizeof sampletext);
+	ft_free(sampletext);
+//	ft_putendl(sampletext);
 	return (0);
 }

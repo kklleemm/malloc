@@ -6,7 +6,7 @@
 #    By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/12/11 12:00:21 by cdeniau           #+#    #+#              #
-#    Updated: 2015/08/06 18:36:40 by cdeniau          ###   ########.fr        #
+#    Updated: 2015/08/07 14:56:42 by cdeniau          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ SRC			=	sources/main.c \
 				sources/size.c \
 				sources/nope.c \
 				sources/ft_atoi_hex.c \
+				sources/ft_free.c \
 
 OBJ			=	$(SRC:.c=.o)
 
