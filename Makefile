@@ -6,7 +6,7 @@
 #    By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/12/11 12:00:21 by cdeniau           #+#    #+#              #
-#    Updated: 2015/08/05 10:22:00 by cdeniau          ###   ########.fr        #
+#    Updated: 2015/08/06 18:36:40 by cdeniau          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME		=	ft_malloc
 SRC			=	sources/main.c \
 				sources/size.c \
 				sources/nope.c \
+				sources/ft_atoi_hex.c \
 
 OBJ			=	$(SRC:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 10:01:19 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/06 17:44:18 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/06 18:40:21 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
  * == protection de la structure partagee pour qu'elle soit utilisee par un seul
  *  thread ???
  */
-
-glo
 
 void		*ft_malloc(size_t size)
 {
@@ -64,5 +62,10 @@ int		main(int ac, char **av)
 
 	tamer = ft_strdup2("LEL");
 	ft_putendl(tamer);
+	ft_atoi_hex(tamer);
+	puts("");
+	ft_atoi_hex(tamer + sizeof tamer);
+	printf("\n%p\n", tamer);
+	printf("%p\n", tamer + sizeof tamer);
 	return (0);
 }

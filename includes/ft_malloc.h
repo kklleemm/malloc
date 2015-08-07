@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 09:41:22 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/06 17:40:13 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/06 18:35:05 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ size_t		small_size(void);
 size_t		large_size(void);
 void		ft_nope(void);
 void		show_alloc_mem(); // ??
+void		ft_atoi_hex(void *ptr);
 
 #endif
