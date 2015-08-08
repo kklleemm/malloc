@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 09:41:22 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/08 14:13:57 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/08 17:33:49 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@
 typedef struct		s_block
 {
 	short			is_free;
-	struct s_block	*next;
+	void			*next;
 }					t_block;
 
-typedef struct		s_page	// page_size = 4096
+typedef struct		s_page
 {
-	short			type;	// TINY / SMALL / LARGE
-	struct s_page	*next;
+	short			type;	// TINY = 400*512 / SMALL = 20*10240 / LARGE = 1*204800
+	void			*next;
 	struct s_block	*first;
 	int				nb_block;	// 1 bloc = 1 malloc
 }					t_page;
@@ -48,7 +48,7 @@ void		ft_free(void *ptr);
 void		*malloc(size_t size);
 void		*realloc(void *ptr, size_t size);
 void		*ft_malloc(size_t size);
-void		*get_mem(size_t size);
+void		*get_mem(short size);
 size_t		tiny_size(void);
 size_t		small_size(void);
 size_t		large_size(void);
