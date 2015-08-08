@@ -6,50 +6,61 @@
 #    By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/12/11 12:00:21 by cdeniau           #+#    #+#              #
-#    Updated: 2015/08/08 14:13:34 by cdeniau          ###   ########.fr        #
+#    Updated: 2015/08/08 18:46:29 by cdeniau          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	ft_malloc
+ifeq ($(HOSTTYPE),)
+	HOSTTYPE := $(shell uname -m)_$(shell uname -s)
+endif
 
-SRC			=	sources/main.c \
-				sources/size.c \
-				sources/nope.c \
-				sources/ft_atoi_hex.c \
-				sources/ft_free.c \
-				sources/get_mem.c \
+NAME		=		libft_malloc_$(HOSTTYPE).so
+LS			=		libft_malloc.so
 
-OBJ			=	$(SRC:.c=.o)
+CC			=		gcc
+CFLAGS		=		-Wall -Werror -Wextra
+SRCDIR		=		./sources/
+SRCO		=		$(SRC:.c=.o)
+ODIR		=		./includes/
+LIB			=		./libft/libft.a
+INC			=		-I./includes -I./libft/includes
+LINK		=		-Llibft -lft
 
-INC			=	-I./includes -I./libft/includes
-LINK		=	-Llibft -lft $(LDFLAGS)
+SRC			=		ft_atoi_hex.c \
+					get_mem.c \
+					malloc.c \
+					size.c \
+					ft_free.c \
+					limit.c \
+					nope.c \
 
-EXTRAFLAGS	=	--analyze -Weverything -Wno-missing-prototypes -Qunused-arguments
-FLAGS		=	$(LDFLAGS)
-INC_MLX		=	minilibx_macos
+OBJ			=		$(SRC:.c=.o)
+OBJS		=		$(addprefix $(ODIR), $(OBJ))
 
-CC			=	/usr/bin/gcc
-RM			=	/bin/rm -v
+all			:		$(LIB) $(NAME)
 
-all			:	$(NAME)
+$(NAME)		:		$(OBJS)
+					$(CC) -shared -o $(NAME) $^ $(LINK) 
+					ln -s $(NAME) $(LS)
 
-$(NAME)		:	$(OBJ)
-	make -C ./libft
-	$(CC) $(FLAGS) $(INC) $(LINK) $(OBJ) -o $(NAME)
+$(ODIR)%.o	:		$(SRCDIR)%.c
+					mkdir -p $(ODIR)
+					$(CC) $(CFLAGS) -c $^ $(INC) -o $@
+
+$(LIB)		:
+					@make -C libft
+
 clean		:
-	make -C ./libft clean
-	$(RM) $(OBJ)
+					/bin/rm -f $(addprefix $(ODIR), $(OBJ)) 
+					make -C ./libft clean
 
-fclean		:	clean
-	make -C ./libft fclean
-	$(RM) $(NAME)
+fclean		:		clean
+					/bin/rm -rf $(LS)
+					make -C ./libft fclean
+					/bin/rm -rf $(NAME)
+					/bin/rm -rf test
 
-re			:	fclean all
+re			:		fclean all
 
-extra       :   FLAGS += $(EXTRAFLAGS)
-extra       :   re
-
-%.o			:	%.c
-	$(CC) $(CFLAGS) $(INC) -c $< -o $@
-
-.PHONY: all clean fclean re
+test		:		re
+					gcc $(CFLAGS) -o test main.c $(LINK) $(NAME) $(INC) -g

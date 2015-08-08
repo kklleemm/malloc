@@ -1,39 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi_hex.c                                      :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/08/06 18:33:29 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/08 16:13:40 by cdeniau          ###   ########.fr       */
+/*   Created: 2015/08/05 10:01:19 by cdeniau           #+#    #+#             */
+/*   Updated: 2015/08/08 18:42:23 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
- *		First 4 Bytes = Segment part
- *		Last Byte = Offset part.
- */
-
 #include "ft_malloc.h"
 
-void					ft_atoi_hex(void *ptr)
+int		main(void)
 {
-	unsigned long long	address;
-	char				str[10];
-	char				*base;
-	int					i;
+	char	*sampletext;
 
-	ft_memset(str, 0, 10);
-	i = 8;
-	base = "0123456789ABCDEF";
-	address = (unsigned long long)ptr;
-	while (address)
-	{
-		str[i] = base[address % 16];
-		address /= 16;
-		i--;
-	}
-	ft_putstr("0x");
-	ft_putstr(str);
+	sampletext = ft_strdup("LEL");
+	puts("debug");
+/*
+ * ft_atoi_hex((void *)&sampletext);
+ * puts("");
+ * ft_atoi_hex((void *)&sampletext + sizeof sampletext);
+ * printf("\n%p\n", (void *)&sampletext);
+ * printf("%p\n", (void *)&sampletext + sizeof sampletext);
+ * ft_free(sampletext);
+ * ft_putendl(sampletext);
+*/
+	return (0);
 }
