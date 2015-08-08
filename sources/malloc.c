@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/08 18:14:08 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/08 18:33:27 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/08 22:52:38 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,20 @@ t_page		g_page;
 
 void		*malloc(size_t size)
 {
-	short	type;
-	t_page	*page;
+	short	flag;
 //	void	*ret;
 
 	page = NULL;
 	if (size <= tiny_size())
-		type = 0;
+		flag = 0;
 		//ret = mmap(0, tiny_size(), 0x1 | 0x2, ALLOC_FLAGS, -1, 0);
 	else if (size <= small_size())
-		type = 1;
+		flag = 0;
 		//ret = mmap(0, small_size(), 0x1 | 0x2, ALLOC_FLAGS, -1, 0);
 	else if (size <= large_size())
-		type = 2;
+		flag = 0;
 		//ret = mmap(0, large_size(), 0x1 | 0x2, ALLOC_FLAGS, -1, 0);
 	else
-		type = 3;
-	return (get_mem(type, page));
+		flag = 0;
+	return (get_mem(flag, size));
 }
