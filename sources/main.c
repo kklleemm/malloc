@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 10:01:19 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/07 15:43:52 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/08 14:23:21 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@
  *  thread ???
  */
 
-void		*ft_malloc(size_t size)
-{
-	void	*ret;
+t_page		g_page;
 
+void		*malloc(size_t size)
+{
+/*
+	void	*ret;
 	if (size <= tiny_size())
 		ret = mmap(0, tiny_size(), 0x1 | 0x2, ALLOC_FLAGS, -1, 0);
 	else if (size <= small_size())
@@ -31,7 +33,8 @@ void		*ft_malloc(size_t size)
 		ret = mmap(0, large_size(), 0x1 | 0x2, ALLOC_FLAGS, -1, 0);
 	else
 		ft_putendl("OH NO");
-	return (ret);
+*/
+	return (get_mem(size));
 }
 
 char	*ft_strdup2(const char *s1)
@@ -44,7 +47,7 @@ char	*ft_strdup2(const char *s1)
 		return (NULL);
 	while (s1[i])
 		i++;
-	if ((str = (char *)ft_malloc(sizeof(*str) * i + 1)) == NULL)
+	if ((str = (char *)malloc(sizeof(*str) * i + 1)) == NULL)
 		return (NULL);
 	i = 0;
 	while (s1[i] != '\0')
@@ -61,12 +64,14 @@ int		main(int ac, char **av)
 	char	*sampletext;
 
 	sampletext = ft_strdup2("LEL");
+/*
 	ft_atoi_hex((void *)&sampletext);
 	puts("");
 	ft_atoi_hex((void *)&sampletext + sizeof sampletext);
 	printf("\n%p\n", (void *)&sampletext);
 	printf("%p\n", (void *)&sampletext + sizeof sampletext);
 	ft_free(sampletext);
-//	ft_putendl(sampletext);
+	ft_putendl(sampletext);
+*/
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 09:41:22 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/07 15:43:05 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/08 14:13:57 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 # include "../libft/libft.h"
 
 # define	ALLOC_FLAGS	MAP_PRIVATE | MAP_ANON
+# define	TINY 512
+# define	SMALL 10240
+# define	LARGE 204800
 
 typedef struct		s_block
 {
@@ -38,11 +41,14 @@ typedef struct		s_page	// page_size = 4096
 	int				nb_block;	// 1 bloc = 1 malloc
 }					t_page;
 
+extern t_page		g_page;
+
 void		free(void *ptr);
 void		ft_free(void *ptr);
 void		*malloc(size_t size);
 void		*realloc(void *ptr, size_t size);
 void		*ft_malloc(size_t size);
+void		*get_mem(size_t size);
 size_t		tiny_size(void);
 size_t		small_size(void);
 size_t		large_size(void);
