@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/04 18:15:19 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/01/04 18:15:20 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/08 18:38:40 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strdup(const char *s1)
 		return (NULL);
 	while (s1[i])
 		i++;
-	if ((str = (char *)malloc(sizeof(*str) * i + 1)) == NULL)
+	if (!(str = (char *)malloc(sizeof(*str) * i + 1)))
 		return (NULL);
 	i = 0;
 	while (s1[i] != '\0')
