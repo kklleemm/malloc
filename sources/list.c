@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   malloc.c                                           :+:      :+:    :+:   */
+/*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/08/08 18:14:08 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/09 17:58:53 by cdeniau          ###   ########.fr       */
+/*   Created: 2015/03/30 19:18:05 by cdeniau           #+#    #+#             */
+/*   Updated: 2015/08/09 14:59:31 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_malloc.h"
 
-/*
- * Vous pouvez avoir une variable globale pour gérer vos allocations et une pour le
- * thread-safe.
- * == protection de la structure partagee pour qu'elle soit utilisee par un seul
- *  thread ???
- */
-
-t_page		g_page;
-
-void		*ft_malloc(size_t size)
+void		ft_add(t_list **list, t_list *new)
 {
-	short	flag;
-//	void	*ret;
+	new->next = *list;
+	*list = new;
+}
 
-	flag = 0;
-	return (get_mem(flag, size));
+t_list		*ft_new(int i)
+{
+	t_list	*new;
+
+	new = (t_list *)malloc(sizeof(t_list));
+	new->e = i;
+	new->next = NULL;
+	return (new);
 }

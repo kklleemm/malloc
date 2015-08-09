@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/06 18:33:29 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/08 16:13:40 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/09 16:18:14 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void					ft_atoi_hex(void *ptr)
 	while (address)
 	{
 		str[i] = base[address % 16];
-		address /= 16;
+		address = address / 16;
 		i--;
 	}
 	ft_putstr("0x");

@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 10:01:19 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/08 19:02:29 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/09 17:59:03 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,17 @@
 int		main(void)
 {
 	char	*sampletext;
+	int		i;
 
-	sampletext = ft_strdup("LEL");
-	puts("debug");
+	i = -1;
+	while (++i < 200)
+	{
+		sampletext = ft_strdup2("LEL");
+		ft_putchar(10);
+		ft_putendl(sampletext);
+		if (sampletext)
+			free(sampletext);
+	}
 /*
  * ft_atoi_hex((void *)&sampletext);
  * puts("");
