@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/10 16:19:27 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/10 20:11:33 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/10 21:28:17 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void				*ft_small_search(t_small *small_head, size_t size)
 {
 	small_head->tsize += size;
+	small_head->csize = size;
 	return ((void *)small_head->page + small_head->tsize);
 }
 

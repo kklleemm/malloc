@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/10 16:50:22 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/10 20:26:57 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/10 20:37:46 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_large				*ft_large_find(t_large *page)
 
 t_large				*ft_new_large(size_t size)
 {
-	t_large			*new;
+	t_large			*new;   // allocation at the begining of the page_size()
 
 	new = mmap(0, sizeof (t_large), FLAGS, -1, 0);
 	if (new == MAP_FAILED)

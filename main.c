@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 10:01:19 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/10 20:13:09 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/10 22:19:10 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,46 +87,13 @@ int		main(int ac, char **av)
 		ft_putendl("Usage : ./test T|S|L nbmalloc [size]");
 	i = -1;
 	if (ft_strcmp(av[1], "T") == 0)
-	{
 		while (++i < ft_atoi(av[2]))
-		{
 			sampletext = ft_strdup2("LEL");
-			ft_putchar(10);
-			printf("malloc=%i : %s\n", i, sampletext);
-			//			if (sampletext)
-			//				free(sampletext);
-		}
-	}
 	else if (ft_strcmp(av[1], "S") == 0)
-	{
 		while (++i < ft_atoi(av[2]))
-		{
 			sampletext = ft_strdup3("LEL");
-			ft_putchar(10);
-			printf("malloc=%i : %s\n", i, sampletext);
-			//			if (sampletext)
-			//				free(sampletext);
-		}
-	}
 	else if (ft_strcmp(av[1], "L") == 0)
-	{
 		while (++i < ft_atoi(av[2]))
-		{
 			sampletext = ft_strdup4("LEL", ft_atoi(av[3]));
-			ft_putchar(10);
-			printf("malloc=%i : %s\n", i, sampletext);
-			//			if (sampletext)
-			//				free(sampletext);
-		}
-	}
-	/*
-	 * ft_atoi_hex((void *)&sampletext);
-	 * puts("");
-	 * ft_atoi_hex((void *)&sampletext + sizeof sampletext);
-	 * printf("\n%p\n", (void *)&sampletext);
-	 * printf("%p\n", (void *)&sampletext + sizeof sampletext);
-	 * ft_free(sampletext);
-	 * ft_putendl(sampletext);
-	 */
 	return (0);
 }

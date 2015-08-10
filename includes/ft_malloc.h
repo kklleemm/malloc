@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 09:41:22 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/10 20:20:40 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/10 22:14:24 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 typedef struct		s_tiny
 {
 	int				tsize;
+	int				csize;
 	void			*page;
 	void			*next;
 }					t_tiny;
@@ -39,6 +40,7 @@ typedef struct		s_tiny
 typedef struct		s_small
 {
 	int				tsize;
+	int				csize;
 	void			*page;
 	void			*next;
 }					t_small;
@@ -54,7 +56,9 @@ typedef struct		s_page
 	t_tiny			*tiny_head;
 	t_small			*small_head;
 	t_large			*large_head;
-	int				nb_block;
+	int				nb_tiny;
+	int				nb_small;
+	int				nb_large;
 }					t_page;
 
 extern t_page		g_page;
@@ -78,5 +82,6 @@ size_t				small_size(void);
 size_t				get_page_size(size_t size);
 void				ft_nope(void);
 void				ft_atoi_hex(void *ptr);
+void				ft_atoi_hex_nl(void *ptr);
 
 #endif
