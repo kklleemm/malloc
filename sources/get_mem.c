@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/08 12:18:21 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/10 14:47:41 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/10 16:31:50 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,36 @@ void				*ft_malloc_tiny(size_t size)
 	if (!g_page.tiny_head) // tiny 1st call
 		g_page.tiny_head = ft_new_tiny(size); // t_tiny creation
 	page = ft_tiny_find(g_page.tiny_head); // getting last page
-	if (page->allocation) // checkin if alloc > 0 (&& < 400)
+	if (size + page->tsize < TINY_PAGE) // checkin if alloc > 0 (&& < 400)
 		ret = ft_tiny_search(page, size);
 	else
 	{
 		page->next = ft_new_tiny(size);
 		return (ft_malloc_tiny(size)); // recursive power
+	}
+	ft_atoi_hex(ret); // DISPLAY DIS ME SEH
+	if (!ret)
+		ft_putendl("OH NO");
+	return (ret);
+}
+
+void				*ft_malloc_small(size_t size)
+{
+	void			*ret;
+	t_small			*page;
+	int				i;
+
+	i = -1;
+	ret = NULL;
+	if (!g_page.small_head) // tiny 1st call
+		g_page.small_head = ft_new_small(size); // t_tiny creation
+	page = ft_small_find(g_page.small_head); // getting last page
+	if (size + page->tsize < SMALL_PAGE) // checkin if alloc > 0 (&& < 400)
+		ret = ft_small_search(page, size);
+	else
+	{
+		page->next = ft_new_small(size);
+		return (ft_malloc_small(size)); // recursive power
 	}
 	ft_atoi_hex(ret); // DISPLAY DIS ME SEH
 	if (!ret)
@@ -51,8 +75,12 @@ void				*get_mem(short flag, size_t size)
 	}
 	if (getrlimit(RLIMIT_AS, &rlp) < 0) // RLIMIT_AS used by mmap
 		return	(NULL);
-	if (size < TINY)
+	if (size <= TINY)
 		ret = ft_malloc_tiny(size);
+	else if (size <= SMALL)
+		ret = ft_malloc_small(size);
+//	else
+//		ret = ft_malloc_large(size);
 //	printf("rlp.rlim_cur = %llu\n", rlp.rlim_cur); // value for a 64-bit signed integer 
 //	printf("rlp.rlim_max = %llu\n", rlp.rlim_max); // value for a 64-bit signed integer 
 	return (ret);

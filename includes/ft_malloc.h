@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 09:41:22 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/10 14:45:51 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/10 16:35:22 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@
 # include "../libft/libft.h"
 
 # define FLAGS PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANON
-# define TINY 1024
-# define TINY_PAGE 204800
-//# define SMALL 10240
+# define TINY 512
+# define TINY_PAGE 102400  // max 200 TINY
+# define SMALL 4096
+# define SMALL_PAGE 409600  // max 100 SMALL
 //# define LARGE 204800
 
 enum				s_bool
@@ -36,7 +37,6 @@ enum				s_bool
 
 typedef struct		s_tiny
 {
-	short			allocation;
 	int				tsize;
 	void			*page;
 	void			*next;
@@ -44,7 +44,8 @@ typedef struct		s_tiny
 
 typedef struct		s_small
 {
-	short			allocation;
+	int				tsize;
+	void			*page;
 	void			*next;
 }					t_small;
 
@@ -71,10 +72,11 @@ void				*realloc(void *ptr, size_t size);
 void				*ft_malloc(size_t size);
 void				*get_mem(short flag, size_t size);
 void				*ft_tiny_search(t_tiny *page, size_t size);
+void				*ft_small_search(t_small *page, size_t size);
 t_tiny				*ft_new_tiny(size_t size);
+t_small				*ft_new_small(size_t size);
 t_tiny				*ft_tiny_find(t_tiny *tiny_head);
-t_small				*ft_new_small(void);
-t_large				*ft_new_large(void);
+t_small				*ft_small_find(t_small *small_head);
 size_t				tiny_size(void);
 size_t				small_size(void);
 size_t				large_size(void);

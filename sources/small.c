@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tiny.c                                             :+:      :+:    :+:   */
+/*   small.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/08/09 15:04:05 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/10 15:57:15 by cdeniau          ###   ########.fr       */
+/*   Created: 2015/08/10 16:19:27 by cdeniau           #+#    #+#             */
+/*   Updated: 2015/08/10 16:19:58 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
- * missing TINY_PAGE definition
- */
-
 #include "ft_malloc.h"
 
-void				*ft_tiny_search(t_tiny *tiny_head, size_t size)
+void				*ft_small_search(t_small *small_head, size_t size)
 {
-	tiny_head->tsize += size;
-	return ((void *)tiny_head->page + tiny_head->tsize);
+	small_head->tsize += size;
+	return ((void *)small_head->page + small_head->tsize);
 }
 
-t_tiny				*ft_tiny_find(t_tiny *page)
+t_small				*ft_small_find(t_small *page)
 {
-	t_tiny			*cpy;
+	t_small			*cpy;
 
 	cpy = page;
 	while (cpy->next)
@@ -32,12 +28,12 @@ t_tiny				*ft_tiny_find(t_tiny *page)
 	return (cpy);
 }
 
-t_tiny				*ft_new_tiny(size_t size)
+t_small				*ft_new_small(size_t size)
 {
-	t_tiny	*new;
+	t_small	*new;
 
-	new = mmap(0, TINY, FLAGS, -1, 0);
-	new->page = mmap(0, TINY_PAGE, FLAGS, -1, 0);
+	new = mmap(0, SMALL, FLAGS, -1, 0);
+	new->page = mmap(0, SMALL_PAGE, FLAGS, -1, 0);
 	new->tsize = size;
 	new->next = NULL;
 	return (new);
