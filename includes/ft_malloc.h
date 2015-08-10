@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 09:41:22 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/10 16:35:22 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/10 17:47:45 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,6 @@
 # define TINY_PAGE 102400  // max 200 TINY
 # define SMALL 4096
 # define SMALL_PAGE 409600  // max 100 SMALL
-//# define LARGE 204800
-
-enum				s_bool
-{
-	false,
-	true
-}					t_bool;
 
 typedef struct		s_tiny
 {
@@ -51,7 +44,8 @@ typedef struct		s_small
 
 typedef struct		s_large
 {
-	short			allocation;
+	long int		tsize;
+	void			*page;
 	void			*next;
 }					t_large;
 
@@ -75,14 +69,14 @@ void				*ft_tiny_search(t_tiny *page, size_t size);
 void				*ft_small_search(t_small *page, size_t size);
 t_tiny				*ft_new_tiny(size_t size);
 t_small				*ft_new_small(size_t size);
+t_large				*ft_new_large(size_t size);
 t_tiny				*ft_tiny_find(t_tiny *tiny_head);
 t_small				*ft_small_find(t_small *small_head);
+t_large				*ft_large_find(t_large *large_head);
 size_t				tiny_size(void);
 size_t				small_size(void);
-size_t				large_size(void);
 size_t				get_page_size(size_t size);
 void				ft_nope(void);
-void				show_alloc_mem();
 void				ft_atoi_hex(void *ptr);
 
 #endif

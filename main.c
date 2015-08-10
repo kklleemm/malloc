@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 10:01:19 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/10 16:37:03 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/10 17:29:36 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,35 @@ char	*ft_strdup3(const char *s1)
 	return (str);
 }
 
+char	*ft_strdup4(const char *s1, int nb)
+{
+	char	*str;
+	int		i;
+
+	i = 0;
+	if (s1 == NULL || nb <= 4096)
+		return (NULL);
+	while (s1[i])
+		i++;
+	if (!(str = (char *)ft_malloc(nb)))
+		return (NULL);
+	i = 0;
+	while (s1[i] != '\0')
+	{
+		str[i] = s1[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}
+
 int		main(int ac, char **av)
 {
 	char	*sampletext;
 	int		i;
 
-	if (ac != 3)
-		ft_putendl("Usage : ./test T|S|L nbmalloc");
+	if (ac != 3 || ac != 4)
+		ft_putendl("Usage : ./test T|S|L nbmalloc [size]");
 	i = -1;
 	if (ft_strcmp(av[1], "T") == 0)
 	{
@@ -80,6 +102,17 @@ int		main(int ac, char **av)
 		while (++i < ft_atoi(av[2]))
 		{
 			sampletext = ft_strdup3("LEL");
+			ft_putchar(10);
+			printf("malloc=%i : %s\n", i, sampletext);
+			//			if (sampletext)
+			//				free(sampletext);
+		}
+	}
+	else if (ft_strcmp(av[1], "L") == 0)
+	{
+		while (++i < ft_atoi(av[2]))
+		{
+			sampletext = ft_strdup4("LEL", ft_atoi(av[3]));
 			ft_putchar(10);
 			printf("malloc=%i : %s\n", i, sampletext);
 			//			if (sampletext)

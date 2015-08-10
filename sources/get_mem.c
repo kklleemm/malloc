@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/08 12:18:21 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/10 16:31:50 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/10 17:46:57 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,26 @@ void				*ft_malloc_small(size_t size)
 	return (ret);
 }
 
+void				*ft_malloc_large(size_t size)
+{
+	void			*ret;
+	t_large			*large_page;
+	int				i;
+
+	i = -1;
+	ret = NULL;
+	if (!g_page.large_head) // tiny 1st call
+		g_page.large_head = ft_new_large(size); // t_tiny creation
+	large_page = ft_large_find(g_page.large_head); // getting last page
+	large_page->next = ft_new_large(size);
+	large_page = large_page->next;
+	ret = large_page->page;
+	ft_atoi_hex(ret); // DISPLAY DIS ME SEH
+	if (!ret)
+		ft_putendl("OH NO");
+	return (ret);
+}
+
 void				*get_mem(short flag, size_t size)
 {
 	void			*ret;
@@ -79,8 +99,8 @@ void				*get_mem(short flag, size_t size)
 		ret = ft_malloc_tiny(size);
 	else if (size <= SMALL)
 		ret = ft_malloc_small(size);
-//	else
-//		ret = ft_malloc_large(size);
+	else
+		ret = ft_malloc_large(size);
 //	printf("rlp.rlim_cur = %llu\n", rlp.rlim_cur); // value for a 64-bit signed integer 
 //	printf("rlp.rlim_max = %llu\n", rlp.rlim_max); // value for a 64-bit signed integer 
 	return (ret);
