@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/09 15:04:05 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/10 17:18:40 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/10 20:11:50 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_tiny				*ft_new_tiny(size_t size)
 {
 	t_tiny	*new;
 
-	new = mmap(0, sizeof (t_tiny *), FLAGS, -1, 0);
+	new = mmap(0, sizeof (t_tiny), FLAGS, -1, 0);
 	new->page = mmap(0, TINY_PAGE, FLAGS, -1, 0);
 	new->tsize = size;
 	new->next = NULL;

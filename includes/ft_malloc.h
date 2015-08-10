@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 09:41:22 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/10 17:47:45 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/10 20:20:40 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include "../libft/libft.h"
 
 # define FLAGS PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANON
+# define FLAGS2 PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANON
 # define TINY 512
 # define TINY_PAGE 102400  // max 200 TINY
 # define SMALL 4096
@@ -44,7 +45,6 @@ typedef struct		s_small
 
 typedef struct		s_large
 {
-	long int		tsize;
 	void			*page;
 	void			*next;
 }					t_large;
@@ -64,7 +64,7 @@ void				ft_free(void *ptr);
 void				*malloc(size_t size);
 void				*realloc(void *ptr, size_t size);
 void				*ft_malloc(size_t size);
-void				*get_mem(short flag, size_t size);
+void				*get_mem(size_t size);
 void				*ft_tiny_search(t_tiny *page, size_t size);
 void				*ft_small_search(t_small *page, size_t size);
 t_tiny				*ft_new_tiny(size_t size);

@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 10:01:19 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/10 17:29:36 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/10 20:13:09 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int		main(int ac, char **av)
 	char	*sampletext;
 	int		i;
 
-	if (ac != 3 || ac != 4)
+	if (ac < 3 || ac > 4)
 		ft_putendl("Usage : ./test T|S|L nbmalloc [size]");
 	i = -1;
 	if (ft_strcmp(av[1], "T") == 0)

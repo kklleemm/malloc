@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/08 18:14:08 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/09 17:58:53 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/10 20:10:43 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,5 @@ t_page		g_page;
 
 void		*ft_malloc(size_t size)
 {
-	short	flag;
-//	void	*ret;
-
-	flag = 0;
-	return (get_mem(flag, size));
+	return (get_mem(size));
 }

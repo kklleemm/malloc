@@ -6,21 +6,11 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 09:46:19 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/10 16:50:49 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/10 20:16:47 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_malloc.h"
-
-size_t		tiny_size(void)
-{
-	return (TINY);
-}
-
-size_t		small_size(void)
-{
-	return (SMALL);
-}
 
 size_t		get_page_size(size_t size)
 {
