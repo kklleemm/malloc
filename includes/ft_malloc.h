@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 09:41:22 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/09 17:57:26 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/10 14:45:51 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ enum				s_bool
 typedef struct		s_tiny
 {
 	short			allocation;
+	int				tsize;
 	void			*page;
 	void			*next;
 }					t_tiny;
@@ -69,8 +70,8 @@ void				*malloc(size_t size);
 void				*realloc(void *ptr, size_t size);
 void				*ft_malloc(size_t size);
 void				*get_mem(short flag, size_t size);
-void				*ft_tiny_search(t_tiny *page);
-t_tiny				*ft_new_tiny(void);
+void				*ft_tiny_search(t_tiny *page, size_t size);
+t_tiny				*ft_new_tiny(size_t size);
 t_tiny				*ft_tiny_find(t_tiny *tiny_head);
 t_small				*ft_new_small(void);
 t_large				*ft_new_large(void);

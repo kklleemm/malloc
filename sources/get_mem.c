@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/08 12:18:21 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/09 17:36:57 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/10 14:47:41 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,20 @@ void				*ft_malloc_tiny(size_t size)
 	int				i;
 
 	i = -1;
-	(void)size;
 	ret = NULL;
 	if (!g_page.tiny_head) // tiny 1st call
-		g_page.tiny_head = ft_new_tiny(); // t_tiny creation
+		g_page.tiny_head = ft_new_tiny(size); // t_tiny creation
 	page = ft_tiny_find(g_page.tiny_head); // getting last page
 	if (page->allocation) // checkin if alloc > 0 (&& < 400)
-		ret = ft_tiny_search(page);
+		ret = ft_tiny_search(page, size);
+	else
+	{
+		page->next = ft_new_tiny(size);
+		return (ft_malloc_tiny(size)); // recursive power
+	}
 	ft_atoi_hex(ret); // DISPLAY DIS ME SEH
-//	if (!ret)
-//		ft_putendl_fd("Tiny Write Failed", 2);
+	if (!ret)
+		ft_putendl("OH NO");
 	return (ret);
 }
 

@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 10:01:19 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/10 14:10:52 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/10 14:31:50 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		main(void)
 	int		i;
 
 	i = -1;
-	while (++i < 210)
+	while (++i < 410)
 	{
 		sampletext = ft_strdup2("LEL");
 		ft_putchar(10);
