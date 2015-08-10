@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/04 19:27:48 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/09 17:59:37 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/10 14:07:43 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	*ft_memchr(const void *s, int c, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s1);
-char	*ft_strdup2(const char *s1);
 char	*ft_strndup(const char *s1, size_t len);
 char	*ft_strcpy(char *s1, const char *s2);
 char	*ft_strncpy(char *s1, const char *s2, size_t n);

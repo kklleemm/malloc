@@ -6,7 +6,7 @@
 #    By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/07 15:13:04 by cdeniau           #+#    #+#              #
-#    Updated: 2015/08/09 18:00:26 by cdeniau          ###   ########.fr        #
+#    Updated: 2015/08/10 14:07:48 by cdeniau          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,6 @@ SRC = ft_memset.c \
 	  ft_memcmp.c \
 	  ft_strlen.c \
 	  ft_strdup.c \
-	  ft_strdup2.c \
 	  ft_strcpy.c \
 	  ft_strncpy.c \
 	  ft_strcat.c \
