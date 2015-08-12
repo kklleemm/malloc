@@ -6,11 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/08 18:14:08 by cdeniau           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2015/08/12 12:39:43 by cdeniau          ###   ########.fr       */
-=======
-/*   Updated: 2015/08/11 20:21:59 by cdeniau          ###   ########.fr       */
->>>>>>> fba9e6b7d53a6b4537e2e5751164c30ab007f694
+/*   Updated: 2015/08/12 13:38:17 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +32,12 @@ int			print_t(void)
 		i = 0;
 		ft_putstr("TINY : ");
 		ft_atoi_hex_nl(g_page.tiny_head);
-		while (++j < g_page.nb_tiny)
 		{
 			ft_atoi_hex(g_page.tiny_head->page + i);
 			ft_putstr(" - ");
-<<<<<<< HEAD
 			ft_atoi_hex(g_page.tiny_head->page + i);
 			ft_putstr(" : ");
 			//print_bytes(g_page.tiny_head->page + 8, 4);
-=======
-//			i += g_page.tiny_head->csize;
-			ft_atoi_hex(g_page.tiny_head->page + i);
-			ft_putstr(" : ");
-//			ft_putnbr(g_page.tiny_head->csize);
->>>>>>> fba9e6b7d53a6b4537e2e5751164c30ab007f694
 			ft_putendl(" octets");
 		}
 		g_page.tiny_head = g_page.tiny_head->next;
@@ -61,6 +49,7 @@ int			print_s(void)
 {
 	int		i;
 	int		j;
+		i = 0;
 
 	while (g_page.small_head)
 	{
@@ -68,7 +57,7 @@ int			print_s(void)
 		i = 0;
 		ft_putstr("SMALL : ");
 		ft_atoi_hex_nl(g_page.small_head);
-		while (++j < g_page.nb_small)
+		while (1)
 		{
 			ft_atoi_hex(g_page.small_head->page + i);
 			ft_putstr(" - ");
