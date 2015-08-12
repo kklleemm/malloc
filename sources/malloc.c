@@ -6,7 +6,11 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/08 18:14:08 by cdeniau           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2015/08/12 12:39:43 by cdeniau          ###   ########.fr       */
+=======
+/*   Updated: 2015/08/11 20:21:59 by cdeniau          ###   ########.fr       */
+>>>>>>> fba9e6b7d53a6b4537e2e5751164c30ab007f694
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +40,16 @@ int			print_t(void)
 		{
 			ft_atoi_hex(g_page.tiny_head->page + i);
 			ft_putstr(" - ");
+<<<<<<< HEAD
 			ft_atoi_hex(g_page.tiny_head->page + i);
 			ft_putstr(" : ");
 			//print_bytes(g_page.tiny_head->page + 8, 4);
+=======
+//			i += g_page.tiny_head->csize;
+			ft_atoi_hex(g_page.tiny_head->page + i);
+			ft_putstr(" : ");
+//			ft_putnbr(g_page.tiny_head->csize);
+>>>>>>> fba9e6b7d53a6b4537e2e5751164c30ab007f694
 			ft_putendl(" octets");
 		}
 		g_page.tiny_head = g_page.tiny_head->next;

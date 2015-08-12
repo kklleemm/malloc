@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/08 12:18:21 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/12 12:01:35 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/12 12:59:33 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void				*ft_malloc_tiny(size_t size)
 		page = ft_tiny_find(g_page.tiny_head); // getting last page
 		page = ft_tiny_append(page, size);
 	}
-	page = ft_tiny_find(g_page.tiny_head); // getting last page
 	ret = ft_tiny_search(page, size);
 	if (!ret)
 		ft_putendl("OH NO");
