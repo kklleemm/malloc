@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 09:41:22 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/11 12:48:34 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/12 11:50:12 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@
 
 typedef struct		s_tiny
 {
-	int				tsize;
-	int				csize;
 	void			*page;
 	void			*next;
 }					t_tiny;
@@ -68,7 +66,9 @@ int					print_s(void);
 int					print_l(void);
 void				free(void *ptr);
 void				ft_free(void *ptr);
+void				print_bytes(const void *ptr, size_t size);
 void				*malloc(size_t size);
+void				*header(void *page, size_t size);
 void				*realloc(void *ptr, size_t size);
 void				*ft_malloc(size_t size);
 void				*get_mem(size_t size);
@@ -80,6 +80,7 @@ t_large				*ft_new_large(size_t size);
 t_tiny				*ft_tiny_find(t_tiny *tiny_head);
 t_small				*ft_small_find(t_small *small_head);
 t_large				*ft_large_find(t_large *large_head);
+t_tiny				*ft_tiny_append(t_tiny *page, size_t size);
 size_t				tiny_size(void);
 size_t				small_size(void);
 size_t				get_page_size(size_t size);
