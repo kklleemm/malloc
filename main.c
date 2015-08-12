@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 10:01:19 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/11 12:50:48 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/12 18:36:33 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int		main(int ac, char **av)
 	else if (ft_strcmp(av[1], "L") == 0)
 		while (++i < ft_atoi(av[2]))
 			sampletext = ft_strdup4("LEL", ft_atoi(av[3]));
-	i = print_t() + print_s() + print_l();
+	i = print_t();
 	ft_putstr("Total : ");
 	ft_putnbr(i);
 	ft_putchar(10);

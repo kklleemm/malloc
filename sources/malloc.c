@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/08 18:14:08 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/12 13:38:17 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/12 18:36:07 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,67 +21,33 @@
 
 t_page		g_page;
 
+int			ft_flag(t_tiny *test)
+{
+	return (test->page->flag);
+}
+
 int			print_t(void)
 {
 	int		i;
-	int		j;
 
-	while (g_page.tiny_head)
+	i = 0;
+	ft_putstr("TINY : ");
+	ft_atoi_hex_nl(g_page.tiny_head->page);
+	while (g_page.tiny_head && i++)
 	{
-		j = -1;
-		i = 0;
-		ft_putstr("TINY : ");
-		ft_atoi_hex_nl(g_page.tiny_head);
+		while (ft_flag(g_page.tiny_head))
 		{
-			ft_atoi_hex(g_page.tiny_head->page + i);
+			ft_atoi_hex(g_page.tiny_head->page + 12);
 			ft_putstr(" - ");
-			ft_atoi_hex(g_page.tiny_head->page + i);
+			ft_atoi_hex(g_page.tiny_head->page + (g_page.tiny_head->page->current_size + 12));
 			ft_putstr(" : ");
-			//print_bytes(g_page.tiny_head->page + 8, 4);
+			ft_putnbr(g_page.tiny_head->page->current_size);
 			ft_putendl(" octets");
+			if (g_page.tiny_head->page->next_block)
+				g_page.tiny_head->page = g_page.tiny_head->page->next_block;
 		}
-		g_page.tiny_head = g_page.tiny_head->next;
-	}
-	return (i);
-}
-
-int			print_s(void)
-{
-	int		i;
-	int		j;
-		i = 0;
-
-	while (g_page.small_head)
-	{
-		j = -1;
-		i = 0;
-		ft_putstr("SMALL : ");
-		ft_atoi_hex_nl(g_page.small_head);
-		while (1)
-		{
-			ft_atoi_hex(g_page.small_head->page + i);
-			ft_putstr(" - ");
-			i += g_page.small_head->csize;
-			ft_atoi_hex(g_page.small_head->page + i);
-			ft_putstr(" : ");
-			ft_putnbr(g_page.small_head->csize);
-			ft_putendl(" octets");
-		}
-		g_page.small_head = g_page.small_head->next;
-	}
-	return (i);
-}
-
-int			print_l(void)
-{
-	int		i;
-
-	while (g_page.large_head)
-	{
-		i = 0;
-		ft_putstr("LARGE : ");
-		ft_atoi_hex_nl(g_page.large_head->page);
-		g_page.large_head = g_page.large_head->next;
+		if (g_page.tiny_head->next)
+			g_page.tiny_head = g_page.tiny_head->next;
 	}
 	return (i);
 }

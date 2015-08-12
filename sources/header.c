@@ -6,14 +6,14 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/11 14:54:40 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/12 13:34:40 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/12 18:47:06 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
  *	header :
  *	| 4 Bytes | 4 Bytes | 4 Bytes | 4 Bytes
- *	| void *next_bloc   | current |  Flag	(0 = not allocated)
+ *	| void *next_block  | current |  Flag	(0 = not allocated)
  *						   size
  */
 
@@ -27,27 +27,18 @@ void 			print_bytes(const void *object, size_t size)
 	printf("]");
 }
 
-void			*header(void *page, size_t size)
+void			*set_header(void *page, size_t size)
 {
-	int			i;
-	int			flag;
-	int			*mem;
+	t_header	*block;
+	int			cflag;
 
-	i = 8;
-	flag = 1;
-	while (i < TINY_PAGE - (int)size - 12)
-	{
-		mem = (int *)(page);
-		if (*mem || *mem == 0)
-		{
-			mem[0] = *mem + (int)size;
-			mem[8] = (int)size;
-			mem[12] = (int)flag;
-			printf("size = %i\n", (int)size);
-			print_bytes(page, 16);
-			return (page + i + 4); // ?
-		}
-		i += *mem + size + 12;
-	}
-	return (NULL);
+	//printf("size = %zu\n", size);
+	cflag = 1;
+	block = (t_header *)page;
+	while (block->flag == 1)
+		block = block->next_block;
+	block->next_block = page + sizeof(t_header) + size;
+	block->current_size = (int)size;
+	block->flag = cflag;
+	return (block + sizeof(t_header));
 }
