@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 10:01:19 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/12 18:36:33 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/13 20:00:02 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strdup2(const char *s1)
 		return (NULL);
 	while (s1[i])
 		i++;
-	if (!(str = (char *)ft_malloc(sizeof(*str) * i  * 50+ 1)))
+	if (!(str = (char *)ft_malloc(sizeof(*str) * i + 1)))
 		return (NULL);
 	i = 0;
 	while (s1[i] != '\0')
@@ -87,15 +87,17 @@ int		main(int ac, char **av)
 		ft_putendl("Usage : ./test T|S|L nbmalloc [size]");
 	i = -1;
 	if (ft_strcmp(av[1], "T") == 0)
+	{
 		while (++i < ft_atoi(av[2]))
 			sampletext = ft_strdup2("LEL");
+	}
 	else if (ft_strcmp(av[1], "S") == 0)
 		while (++i < ft_atoi(av[2]))
 			sampletext = ft_strdup3("LEL");
 	else if (ft_strcmp(av[1], "L") == 0)
 		while (++i < ft_atoi(av[2]))
 			sampletext = ft_strdup4("LEL", ft_atoi(av[3]));
-	i = print_t();
+//	i = print_t();
 	ft_putstr("Total : ");
 	ft_putnbr(i);
 	ft_putchar(10);

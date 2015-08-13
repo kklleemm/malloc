@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 09:41:22 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/12 18:47:12 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/13 19:47:12 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,9 @@
 # define SMALL 4096
 # define SMALL_PAGE 409600  // max 100 SMALL
 
-typedef struct		s_header
-{
-	void			*next_block;
-	int				current_size;
-	int				flag;
-}					t_header;
-
 typedef struct		s_tiny
 {
-	t_header		*page;
+	void			**firstblock;
 	void			*next;
 }					t_tiny;
 
@@ -73,7 +66,7 @@ void				free(void *ptr);
 void				ft_free(void *ptr);
 void				print_bytes(const void *ptr, size_t size);
 void				*malloc(size_t size);
-void				*set_header(void *page, size_t size);
+void				*set_header(t_tiny *page, size_t size);
 void				*realloc(void *ptr, size_t size);
 void				*ft_malloc(size_t size);
 void				*get_mem(size_t size);
