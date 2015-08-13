@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 09:41:22 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/13 22:13:43 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/13 22:35:33 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct		s_large
 {
 	void			*page;
 	void			*next;
-}					t_large;
+}					t_large; // t large gro
 
 typedef struct		s_page
 {
@@ -54,6 +54,7 @@ typedef struct		s_page
 	t_large			*large_head;
 	int				nb_tiny;
 	int				nb_small;
+	int				nb_large;
 }					t_page;
 
 extern t_page		g_page;
@@ -74,7 +75,7 @@ t_small				*ft_new_small(void);
 t_large				*ft_new_large(size_t size);
 t_tiny				*ft_tiny_find(t_tiny *tiny_head, int nbtiny);
 t_small				*ft_small_find(t_small *small_head, int nbsmall);
-t_large				*ft_large_find(t_large *large_head);
+t_large				*ft_large_find(t_large *large_head, int nblarge);
 size_t				tiny_size(void);
 size_t				small_size(void);
 size_t				get_page_size(size_t size);
