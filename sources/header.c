@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/11 14:54:40 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/13 20:06:13 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/13 20:54:50 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,17 @@ void 			print_bytes(const void *object, size_t size)
 	printf("]");
 }
 
-void			*set_header(t_tiny *page, size_t size)
+void			*set_header(void **firstblock, size_t size)
 {
 	void		**header;
 	int			*flag;
 	int			*ssize;
 
-	header = page->firstblock;
-	header[0] = (void *)(header[0] + size + 16);
+	header = (void *)firstblock;
+	header[0] = (void *)(header + (int)size + 16);
    	ssize = (int *)(header + 8);
-	flag = (int *)(header + 12);
 	ssize[0] = (int)size;
+	flag = (int *)(header + 12);
 	flag[0] = 1337;
 //	print_bytes(header[0], 16);
 	return ((void *)(header[0] + 16));
