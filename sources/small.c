@@ -5,37 +5,31 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/08/10 16:19:27 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/10 21:28:17 by cdeniau          ###   ########.fr       */
+/*   Created: 2015/08/13 22:12:08 by cdeniau           #+#    #+#             */
+/*   Updated: 2015/08/13 22:14:41 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_malloc.h"
 
-void				*ft_small_search(t_small *small_head, size_t size)
-{
-	small_head->tsize += size;
-	small_head->csize = size;
-	return ((void *)small_head->page + small_head->tsize);
-}
-
-t_small				*ft_small_find(t_small *page)
+t_small				*ft_small_find(t_small *page, int nbsmall)
 {
 	t_small			*cpy;
+	int				i;
 
+	i = 0;
 	cpy = page;
-	while (cpy->next)
+	while (++i < nbsmall)
 		cpy = cpy->next;
 	return (cpy);
 }
 
-t_small				*ft_new_small(size_t size)
+t_small				*ft_new_small(void)
 {
-	t_small			*new;
+	t_small	*new;
 
-	new = mmap(0, sizeof (t_small), FLAGS, -1, 0);
-	new->page = mmap(0, SMALL_PAGE, FLAGS, -1, 0);
-	new->tsize = size;
+	new = mmap(0, sizeof (t_small) + 1, FLAGS, -1, 0);
+	new->firstblock = mmap(0, SMALL_PAGE, FLAGS, -1, 0);
 	new->next = NULL;
 	return (new);
 }
