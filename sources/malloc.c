@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/08 18:14:08 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/14 15:02:26 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/15 00:01:11 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ void				*ft_malloc(size_t size)
 	void			*ret;
 	struct rlimit	rlp;
 
-	ret = NULL;
+	ret = NN;
 	if (getrlimit(RLIMIT_AS, &rlp) < 0)
-		return (NULL);
+		return (NN);
 	if (size <= TINY)
 		ret = ft_malloc_tiny(size);
 	else if (size <= SMALL)
 		ret = ft_malloc_small(size);
 	else
 		ret = ft_malloc_large(size);
-	return (ret);
+	REP;
 }

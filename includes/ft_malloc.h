@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 09:41:22 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/14 23:51:34 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/15 00:00:53 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@
 # define SMALL 4096
 # define SMALL_PAGE 409600
 # define NN NULL
+# define SES_VRER 1
+# define CANOLI 0
+# define REP return (ret)
 
 typedef struct		s_tiny
 {
@@ -68,10 +71,9 @@ void				ft_print(void);
 void				free(void *ptr);
 void				ft_free(void *ptr);
 void				print_mem(void *mem);
-void				*malloc(size_t size);
+void				*ft_malloc(size_t size);
 void				*set_header(void **firstblock, size_t size);
 void				*realloc(void *ptr, size_t size);
-void				*ft_malloc(size_t size);
 void				*ft_malloc_tiny(size_t size);
 void				*ft_malloc_small(size_t size);
 void				*ft_malloc_large(size_t size);
