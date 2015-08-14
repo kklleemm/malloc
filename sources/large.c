@@ -6,22 +6,44 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/13 22:23:32 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/15 00:02:04 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/15 00:12:29 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_malloc.h"
+
+void				ft_print_large(void)
+{
+	t_tiny			*large;
+
+	if (!g_page.large_head)
+		return ;
+	large = (void *)g_page.large_head;
+	ft_putstr("LARGE : ");
+	while (large)
+	{
+		ft_atoi_hex_nl(large->firstblock);
+		ft_atoi_hex((void *)(large->firstblock + 16));
+		ft_putstr(" - ");
+		ft_atoi_hex((void *)(large->firstblock + large->size));
+		ft_putstr(" : ");
+		ft_putnbr((int)(get_mem_size(large->firstblock)));
+		ft_putstr(" octets        ");
+		print_mem((void *)(large->firstblock + 16));
+		large = large->next;
+	}
+}
 
 void				*ft_malloc_large(size_t size)
 {
 	void			*ret;
 	t_large			*alloc;
 
-	ret = NULL;
-	alloc = NULL;
+	ret = NN;
+	alloc = NN;
 	if (!g_page.large_head)
 	{
-		g_page.nb_large = 1;
+		g_page.nb_large = SES_VRER;
 		g_page.large_head = ft_new_large(size);
 	}
 	else
