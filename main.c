@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 10:01:19 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/13 22:16:48 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/14 11:09:22 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,11 @@ int		main(int ac, char **av)
 	if (ft_strcmp(av[1], "T") == 0)
 	{
 		while (++i < ft_atoi(av[2]))
-			sampletext = ft_malloc(100);
-		puts(ft_strcpy(sampletext, "JE ECRI DAN LE TINY"));
+			sampletext = ft_malloc(10);
+		if (i % 2 == 1)
+			puts(ft_strcpy(sampletext, "AAAAAAAAAA"));
+		else
+			puts(ft_strcpy(sampletext, "BBBBBBBBBB"));
 	}
 	else if (ft_strcmp(av[1], "S") == 0)
 	{

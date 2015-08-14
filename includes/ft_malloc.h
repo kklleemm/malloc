@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 09:41:22 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/13 22:35:33 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/14 11:32:38 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,14 @@ typedef struct		s_tiny
 {
 	void			**firstblock;
 	void			*next;
+	int				size;
 }					t_tiny;
 
 typedef struct		s_small
 {
 	void			**firstblock;
 	void			*next;
+	int				size;
 }					t_small;
 
 typedef struct		s_large

@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/08 12:18:21 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/13 23:02:24 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/14 11:32:07 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,18 @@ void				*ft_malloc_tiny(size_t size)
 		g_page.tiny_head = ft_new_tiny(); // t_tiny creation
 	}
 	page = ft_tiny_find(g_page.tiny_head, g_page.nb_tiny); // getting last page
-	ret = set_header(page->firstblock, size);
+	if ((page->size + (int)size + 16 > (TINY_PAGE)))
+	{
+		ret = set_header(page->firstblock, size);
+		page->size += (int)size + 16;
+	}
+	else
+	{
+		page->next = ft_new_tiny();
+		page = page->next;
+		page->size = (int)size + 16;
+		ret = set_header(page->firstblock, size);
+	}
 	if (!ret)
 		ft_putendl("OH NO");
 	return (ret);
@@ -48,9 +59,23 @@ void				*ft_malloc_small(size_t size)
 	{
 		g_page.nb_small = 1;
 		g_page.small_head = ft_new_small(); // t_tiny creation
+		g_page.small_head->size = (int)size + 16;
+		ret = set_header(page->firstblock, size);
+		return (ret);
 	}
 	page = ft_small_find(g_page.small_head, g_page.nb_small); // getting last page
-	ret = set_header(page->firstblock, size);
+	if ((page->size + (int)size + 16 > (SMALL_PAGE)))
+	{
+		ret = set_header(page->firstblock, size);
+		page->size += (int)size + 16;
+	}
+	else
+	{
+		page->next = ft_new_small();
+		page = page->next;
+		page->size = (int)size + 16;
+		ret = set_header(page->firstblock, size);
+	}
 	if (!ret)
 		ft_putendl("OH NO");
 	return (ret);
