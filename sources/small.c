@@ -6,11 +6,43 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/13 22:12:08 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/13 23:00:44 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/14 12:25:35 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_malloc.h"
+
+void				*ft_malloc_small(size_t size)
+{
+	void			*ret;
+	t_small			*page;
+	int				i;
+
+	i = -1;
+	ret = NULL;
+	page = NULL;
+	if (!g_page.small_head) // tiny 1st call
+	{
+		g_page.nb_small = 1;
+		g_page.small_head = ft_new_small(); // t_tiny creation
+	}
+	page = ft_small_find(g_page.small_head, g_page.nb_small); // getting last page
+	if ((page->size + (int)size + 16 > (SMALL_PAGE)))
+	{
+		ret = set_header(page->firstblock, size);
+		page->size += (int)size + 16;
+	}
+	else
+	{
+		page->next = ft_new_small();
+		page = page->next;
+		page->size = (int)size + 16;
+		ret = set_header(page->firstblock, size);
+	}
+	if (!ret)
+		ft_putendl("OH NO");
+	return (ret);
+}
 
 t_small				*ft_small_find(t_small *page, int nbsmall)
 {

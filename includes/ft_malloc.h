@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 09:41:22 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/14 11:32:38 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/14 13:10:29 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,12 @@ typedef struct		s_page
 	int				nb_tiny;
 	int				nb_small;
 	int				nb_large;
+	int				print;
 }					t_page;
 
 extern t_page		g_page;
 
-int					print_t(void);
-int					print_s(void);
-int					print_l(void);
+void				ft_print(void);
 void				free(void *ptr);
 void				ft_free(void *ptr);
 void				print_bytes(const void *ptr, size_t size);
@@ -71,6 +70,8 @@ void				*malloc(size_t size);
 void				*set_header(void **firstblock, size_t size);
 void				*realloc(void *ptr, size_t size);
 void				*ft_malloc(size_t size);
+void				*ft_malloc_tiny(size_t size);
+void				*ft_malloc_small(size_t size);
 void				*get_mem(size_t size);
 t_tiny				*ft_new_tiny(void);
 t_small				*ft_new_small(void);
@@ -84,5 +85,6 @@ size_t				get_page_size(size_t size);
 void				ft_nope(void);
 void				ft_atoi_hex(void *ptr);
 void				ft_atoi_hex_nl(void *ptr);
+int					get_mem_size(void **firstblock);
 
 #endif
