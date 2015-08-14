@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 09:41:22 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/14 14:38:50 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/14 15:27:11 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define TINY_PAGE 102400
 # define SMALL 4096
 # define SMALL_PAGE 409600
+# define NN NULL
 
 typedef struct		s_tiny
 {

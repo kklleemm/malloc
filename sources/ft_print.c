@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/14 12:38:48 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/14 14:16:18 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/14 15:26:58 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@ void		ft_print(void)
 {
 	void	**cpy;
 	void	**cpy2;
+	void	*tmp;
 
-	cpy = NULL;
-	cpy2 = NULL;
+	cpy = NN;
+	cpy2 = NN;
+	tmp = NN;
 	if (g_page.tiny_head)
 	{
 		cpy = (void*)g_page.tiny_head->firstblock;
@@ -27,7 +29,16 @@ void		ft_print(void)
 		{
 			ft_atoi_hex_nl(cpy);
 			while (get_mem_size(g_page.tiny_head->firstblock))
+			{
+				tmp = (void*)g_page.tiny_head->firstblock + 16;
+				ft_atoi_hex((void*)g_page.tiny_head->firstblock + 16);
+				ft_putstr(" - ");
 				g_page.tiny_head->firstblock = *(g_page.tiny_head->firstblock);
+				ft_atoi_hex(g_page.tiny_head->firstblock);
+				ft_putstr(" : ");
+				ft_putnbr((((void*)g_page.tiny_head->firstblock) - tmp));
+				ft_putendl(" octets");
+			}
 			if (g_page.tiny_head->next)
 			{
 				g_page.tiny_head = g_page.tiny_head->next;
