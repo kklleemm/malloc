@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/14 12:38:48 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/14 23:08:30 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/14 23:39:44 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,23 @@ int		check_flag(void **header)
 
 	flag = (int *)(header + 12);
 	return (flag[0]);
+}
+
+void		print_mem(void *mem)
+{
+	int		i;
+	char	*str;
+
+	i = 0;
+	str = (char *)mem;
+	while (i++ < 16)
+	{
+		if (str[i] > 33 && str[i] < 127)
+			write(1, &str[i], 1);
+		else
+			write(1, ".", 1);
+	}
+	ft_putchar(10);
 }
 
 void		ft_print(void)
@@ -43,7 +60,12 @@ void		ft_print(void)
 			{
 				ft_atoi_hex((void *)(tiny->firstblock + 16));
 				ft_putstr(" - ");
-				ft_atoi_hex_nl((void *)(tiny->firstblock + tiny->size));
+				ft_atoi_hex((void *)(tiny->firstblock + tiny->size));
+				ft_putstr(" : ");
+				ft_putnbr((int)(get_mem_size(tiny->firstblock)));
+				ft_putstr(" octets");
+				ft_putstr("       ");
+				print_mem((void *)(tiny->firstblock + 16));
 			}
 			tiny->firstblock = *tiny->firstblock;
 		}
