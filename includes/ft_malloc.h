@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 09:41:22 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/14 14:13:40 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/14 14:24:27 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ t_small				*ft_small_find(t_small *small_head, int nbsmall);
 t_large				*ft_large_find(t_large *large_head, int nblarge);
 size_t				tiny_size(void);
 size_t				small_size(void);
-size_t				get_page_size(size_t size);
 void				ft_nope(void);
 void				ft_atoi_hex(void *ptr);
 void				ft_atoi_hex_nl(void *ptr);

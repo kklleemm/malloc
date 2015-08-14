@@ -6,7 +6,7 @@
 #    By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/12/11 12:00:21 by cdeniau           #+#    #+#              #
-#    Updated: 2015/08/14 12:53:09 by cdeniau          ###   ########.fr        #
+#    Updated: 2015/08/14 14:24:23 by cdeniau          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,11 +29,8 @@ LINK		=		-Llibft -lft
 SRC			=		ft_atoi_hex.c \
 					get_mem.c \
 					malloc.c \
-					size.c \
 					ft_free.c \
 					ft_print.c \
-					limit.c \
-					nope.c \
 					tiny.c \
 					small.c \
 					large.c \

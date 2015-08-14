@@ -6,14 +6,9 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/06 18:33:29 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/10 22:14:10 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/14 14:18:31 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/*
- *		First 4 Bytes = Segment part
- *		Last Byte = Offset part.
- */
 
 #include "ft_malloc.h"
 

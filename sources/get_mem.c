@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/08 12:18:21 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/14 13:06:35 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/14 14:19:30 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void				*get_mem(size_t size)
 	struct rlimit	rlp;
 
 	ret = NULL;
-	if (getrlimit(RLIMIT_AS, &rlp) < 0) // RLIMIT_AS used by mmap
-		return	(NULL);
+	if (getrlimit(RLIMIT_AS, &rlp) < 0)
+		return (NULL);
 	if (size <= TINY)
 		ret = ft_malloc_tiny(size);
 	else if (size <= SMALL)
