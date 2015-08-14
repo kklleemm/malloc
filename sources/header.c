@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/11 14:54:40 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/14 14:21:09 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/14 22:40:44 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@ void 			print_bytes(const void *object, size_t size)
 
 int				get_mem_size(void **firstblock)
 {
-	if (*firstblock + 8)
-		return ((int)firstblock[0]);
-	return (0);
+	int 		*size_mem;
+
+	size_mem = (int *)(firstblock + 8);
+	return (size_mem[0]);
 }
 
 void			*set_header(void **firstblock, size_t size)
@@ -44,9 +45,9 @@ void			*set_header(void **firstblock, size_t size)
 		firstblock = *firstblock;
 	header = (void *)firstblock;
 	header[0] = (void *)(header + (int)size + 16);
-	ssize = (int *)(header + 8);
-	ssize[0] = (int)size;
-	flag = (int *)(header + 12);
+	ssize = (int *)(firstblock + 8);
+	ssize[0] = size;
+	flag = (int *)(firstblock + 12);
 	flag[0] = 1337;
-	return ((void *)(header[0] + 16));
+	return ((void *)(firstblock + 16));
 }
