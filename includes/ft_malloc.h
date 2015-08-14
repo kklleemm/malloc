@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 09:41:22 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/14 22:11:55 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/14 23:51:34 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ extern t_page		g_page;
 void				ft_print(void);
 void				free(void *ptr);
 void				ft_free(void *ptr);
-void				print_bytes(const void *ptr, size_t size);
+void				print_mem(void *mem);
 void				*malloc(size_t size);
 void				*set_header(void **firstblock, size_t size);
 void				*realloc(void *ptr, size_t size);
@@ -81,11 +81,15 @@ t_large				*ft_new_large(size_t size);
 t_tiny				*ft_tiny_find(t_tiny *tiny_head, int nbtiny);
 t_small				*ft_small_find(t_small *small_head, int nbsmall);
 t_large				*ft_large_find(t_large *large_head, int nblarge);
+void				ft_print_tiny(void);
+void				ft_print_small(void);
+void				ft_print_large(void);
 size_t				tiny_size(void);
 size_t				small_size(void);
 void				ft_nope(void);
 void				ft_atoi_hex(void *ptr);
 void				ft_atoi_hex_nl(void *ptr);
 int					get_mem_size(void **firstblock);
+int					check_flag(void **firstblock);
 
 #endif

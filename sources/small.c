@@ -6,11 +6,40 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/13 22:12:08 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/14 15:27:45 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/14 23:51:12 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_malloc.h"
+
+void				ft_print_small(void)
+{
+	t_tiny			*small;
+
+	if (!g_page.small_head)
+		return ;
+	small = (void *)g_page.small_head;
+	ft_putstr("SMALL : ");
+	while (small)
+	{
+		ft_atoi_hex_nl(small->firstblock);
+		while (get_mem_size(small->firstblock))
+		{
+			if (check_flag(small->firstblock) == 1337)
+			{
+				ft_atoi_hex((void *)(small->firstblock + 16));
+				ft_putstr(" - ");
+				ft_atoi_hex((void *)(small->firstblock + small->size));
+				ft_putstr(" : ");
+				ft_putnbr((int)(get_mem_size(small->firstblock)));
+				ft_putstr(" octets        ");
+				print_mem((void *)(small->firstblock + 16));
+			}
+			small->firstblock = *small->firstblock;
+		}
+		small = small->next;
+	}
+}
 
 void				*ft_malloc_small(size_t size)
 {

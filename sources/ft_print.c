@@ -6,24 +6,24 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/14 12:38:48 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/14 23:39:44 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/14 23:48:08 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_malloc.h"
 
-int		check_flag(void **header)
+int					check_flag(void **header)
 {
-	int	*flag;
+	int				*flag;
 
 	flag = (int *)(header + 12);
 	return (flag[0]);
 }
 
-void		print_mem(void *mem)
+void				print_mem(void *mem)
 {
-	int		i;
-	char	*str;
+	int				i;
+	char			*str;
 
 	i = 0;
 	str = (char *)mem;
@@ -37,16 +37,10 @@ void		print_mem(void *mem)
 	ft_putchar(10);
 }
 
-void		ft_print(void)
+void				ft_print_tiny(void)
 {
-	void	**cpy;
-	void	**cpy2;
-	void	*tmp;
-	t_tiny	*tiny;
+	t_tiny			*tiny;
 
-	cpy = NN;
-	cpy2 = NN;
-	tmp = NN;
 	if (!g_page.tiny_head)
 		return ;
 	tiny = (void *)g_page.tiny_head;
@@ -63,8 +57,7 @@ void		ft_print(void)
 				ft_atoi_hex((void *)(tiny->firstblock + tiny->size));
 				ft_putstr(" : ");
 				ft_putnbr((int)(get_mem_size(tiny->firstblock)));
-				ft_putstr(" octets");
-				ft_putstr("       ");
+				ft_putstr(" octets        ");
 				print_mem((void *)(tiny->firstblock + 16));
 			}
 			tiny->firstblock = *tiny->firstblock;

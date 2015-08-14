@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 10:01:19 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/14 15:11:47 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/14 23:52:05 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int		main(int ac, char **av)
 	else if (ft_strcmp(av[1], "L") == 0)
 		while (++i < ft_atoi(av[2]))
 			sampletext = ft_malloc(ft_atoi(av[3]));
-	ft_print();
+	ft_print_tiny();
+	ft_print_small();
 	return (0);
 }
