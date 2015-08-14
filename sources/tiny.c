@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/09 15:04:05 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/14 14:02:37 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/14 14:09:18 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void				*ft_malloc_tiny(size_t size)
 		ret = set_header(page->firstblock, size);
 		g_page.nb_tiny++;
 	}
-	printf("page->size=%d\n", page->size);
 	if (!ret)
 		ft_putendl("OH NO");
 	return (ret);

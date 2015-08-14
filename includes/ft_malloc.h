@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 09:41:22 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/14 13:10:29 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/14 14:13:40 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@
 # define FLAGS PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANON
 # define FLAGS2 PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANON
 # define TINY 512
-# define TINY_PAGE 102400  // max 200 TINY
+# define TINY_PAGE 102400  // min 200 TINY
 # define SMALL 4096
-# define SMALL_PAGE 409600  // max 100 SMALL
+# define SMALL_PAGE 409600  // min 100 SMALL
 
 typedef struct		s_tiny
 {
