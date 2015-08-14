@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/09 15:04:05 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/14 14:27:58 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/14 14:33:58 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ void				*ft_malloc_tiny(size_t size)
 {
 	void			*ret;
 	t_tiny			*page;
-	int				i;
 
-	i = -1;
 	ret = NULL;
 	page = NULL;
 	if (!g_page.tiny_head)

@@ -6,7 +6,7 @@
 #    By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/12/11 12:00:21 by cdeniau           #+#    #+#              #
-#    Updated: 2015/08/14 14:24:23 by cdeniau          ###   ########.fr        #
+#    Updated: 2015/08/14 14:38:09 by cdeniau          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,6 @@ INC			=		-I./includes -I./libft/includes
 LINK		=		-Llibft -lft
 
 SRC			=		ft_atoi_hex.c \
-					get_mem.c \
 					malloc.c \
 					ft_free.c \
 					ft_print.c \

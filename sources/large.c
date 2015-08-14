@@ -6,11 +6,32 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/13 22:23:32 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/13 22:29:54 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/14 14:37:33 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_malloc.h"
+
+void				*ft_malloc_large(size_t size)
+{
+	void			*ret;
+	t_large			*alloc;
+
+	ret = NULL;
+	alloc = NULL;
+	if (!g_page.large_head)
+	{
+		g_page.nb_large = 1;
+		g_page.large_head = ft_new_large(size);
+	}
+	else
+	{
+		alloc = ft_large_find(g_page.large_head, g_page.nb_large);
+		g_page.nb_large++;
+		alloc->next = ft_new_large(size);
+	}
+	return (ret);
+}
 
 t_large				*ft_large_find(t_large *page, int nblarge)
 {
@@ -29,7 +50,7 @@ t_large				*ft_new_large(size_t size)
 	t_large	*new;
 
 	new = mmap(0, sizeof (t_large) + 1, FLAGS, -1, 0);
-	new->page = mmap(0, (int)size, FLAGS, -1, 0);
+	new->page = mmap(0, size * 16, FLAGS, -1, 0);
 	new->next = NULL;
 	return (new);
 }

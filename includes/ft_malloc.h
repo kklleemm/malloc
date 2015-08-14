@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 09:41:22 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/14 14:24:27 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/14 14:38:50 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@
 # define FLAGS PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANON
 # define FLAGS2 PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANON
 # define TINY 512
-# define TINY_PAGE 102400  // min 200 TINY
+# define TINY_PAGE 102400
 # define SMALL 4096
-# define SMALL_PAGE 409600  // min 100 SMALL
+# define SMALL_PAGE 409600
 
 typedef struct		s_tiny
 {
@@ -47,7 +47,8 @@ typedef struct		s_large
 {
 	void			*page;
 	void			*next;
-}					t_large; // t large gro
+	int				size;
+}					t_large;
 
 typedef struct		s_page
 {
@@ -72,7 +73,7 @@ void				*realloc(void *ptr, size_t size);
 void				*ft_malloc(size_t size);
 void				*ft_malloc_tiny(size_t size);
 void				*ft_malloc_small(size_t size);
-void				*get_mem(size_t size);
+void				*ft_malloc_large(size_t size);
 t_tiny				*ft_new_tiny(void);
 t_small				*ft_new_small(void);
 t_large				*ft_new_large(size_t size);
