@@ -6,17 +6,26 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/11 11:33:07 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/01/06 12:29:11 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/15 17:21:05 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr(int n)
+void		ft_putnbr(int nb)
 {
-	char	*str;
-
-	str = ft_itoa(n);
-	ft_putstr(str);
-	ft_strdel(&str);
+	if (nb < 0)
+	{
+		ft_putchar('-');
+		nb = -nb;
+	}
+	if (nb >= 10)
+	{
+		ft_putnbr(nb / 10);
+		ft_putnbr(nb % 10);
+	}
+	else
+	{
+		ft_putchar(nb + '0');
+	}
 }
