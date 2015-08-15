@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/13 22:12:08 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/14 23:53:20 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/15 16:51:53 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void				*ft_malloc_small(size_t size)
 	void			*ret;
 	t_small			*page;
 
-	ret = NN;
-	page = NN;
+	ret = NULL;
+	page = NULL;
 	if (!g_page.small_head)
 	{
 		g_page.nb_small = 1;
@@ -84,6 +84,6 @@ t_small				*ft_new_small(void)
 
 	new = mmap(0, sizeof(t_small) + 1, FLAGS, -1, 0);
 	new->firstblock = mmap(0, SMALL_PAGE * 16, FLAGS, -1, 0);
-	new->next = NN;
+	new->next = NULL;
 	return (new);
 }
