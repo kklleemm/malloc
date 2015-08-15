@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 09:41:22 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/15 18:06:50 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/15 20:31:56 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ size_t				small_size(void);
 void				ft_nope(void);
 void				ft_atoi_hex(void *ptr);
 void				ft_atoi_hex_nl(void *ptr);
+int					modif_mem_size(void **firstblock, int size);
 int					get_mem_size(void **firstblock);
 int					check_flag(void **firstblock);
 

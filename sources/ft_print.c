@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/14 12:38:48 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/15 17:21:17 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/15 19:43:55 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void				print_mem(void *mem)
 	int				i;
 	char			*str;
 
-	i = 0;
+	i = -1;
 	str = (char *)mem;
-	while (i++ < 16)
+	while (++i < 16)
 	{
 		if (str[i] > 33 && str[i] < 127)
 			write(1, &str[i], 1);

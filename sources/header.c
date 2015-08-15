@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/11 14:54:40 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/15 17:29:21 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/15 20:31:17 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,15 @@ int				get_mem_size(void **firstblock)
 	int 		*size_mem;
 
 	size_mem = (int *)(firstblock + 8);
+	return (size_mem[0]);
+}
+
+int				modif_mem_size(void **firstblock, int size)
+{
+	int 		*size_mem;
+
+	size_mem = (int *)(firstblock + 8);
+	size_mem[0] = size;
 	return (size_mem[0]);
 }
 
