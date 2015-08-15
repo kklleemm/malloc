@@ -6,7 +6,7 @@
 #    By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/12/11 12:00:21 by cdeniau           #+#    #+#              #
-#    Updated: 2015/08/14 14:38:09 by cdeniau          ###   ########.fr        #
+#    Updated: 2015/08/15 18:42:15 by cdeniau          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ LINK		=		-Llibft -lft
 SRC			=		ft_atoi_hex.c \
 					malloc.c \
 					ft_free.c \
+					ft_realloc.c \
 					ft_print.c \
 					tiny.c \
 					small.c \

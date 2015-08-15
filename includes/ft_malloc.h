@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 09:41:22 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/15 17:06:47 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/15 18:06:50 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ extern t_page		g_page;
 
 void				ft_print(void);
 void				free(void *ptr);
-void				ft_free(void *ptr);
 void				print_mem(void *mem);
 void				*malloc(size_t size);
+void				*ft_realloc(void *ptr, size_t size);
 void				*set_header(void **firstblock, size_t size);
 void				*realloc(void *ptr, size_t size);
 void				*malloc(size_t size);
