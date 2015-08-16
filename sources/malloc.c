@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/08 18:14:08 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/16 12:43:52 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/16 14:39:05 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,6 @@ void				*malloc(size_t size)
 	struct rlimit	rlp;
 
 	ret = NULL;
-	g_page.tiny_head = NULL;
-	g_page.small_head = NULL;
-	g_page.large_head = NULL;
 	if (getrlimit(RLIMIT_AS, &rlp) < 0)
 		return (NULL);
 	if (size <= TINY)
