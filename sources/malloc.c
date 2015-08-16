@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/08 18:14:08 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/15 17:08:58 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/16 12:06:18 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,5 @@ void				*malloc(size_t size)
 		ret = ft_malloc_small(size);
 	else
 		ret = ft_malloc_large(size);
-	ft_print_tiny();
 	return (ret);
 }
