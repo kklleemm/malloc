@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 09:41:22 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/15 20:31:56 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/16 12:34:57 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ typedef struct		s_page
 
 extern t_page		g_page;
 
-void				ft_print(void);
 void				free(void *ptr);
 void				print_mem(void *mem);
 void				*malloc(size_t size);

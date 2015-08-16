@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/16 12:01:56 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/16 12:02:39 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/16 14:36:16 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void				ft_print_tiny(void)
 	if (!g_page.tiny_head)
 		return ;
 	tiny = (void *)g_page.tiny_head;
-	ft_putstr("tiny : ");
 	while (tiny)
 	{
+		ft_putstr("TINY : ");
 		ft_atoi_hex_nl(tiny->firstblock);
 		while (get_mem_size(tiny->firstblock))
 		{
@@ -46,8 +46,8 @@ void				*ft_malloc_tiny(size_t size)
 	void			*ret;
 	t_tiny			*page;
 
-	ret = NN;
-	page = NN;
+	ret = NULL;
+	page = NULL;
 	if (!g_page.tiny_head)
 	{
 		g_page.nb_tiny = 1;
