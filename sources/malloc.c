@@ -6,13 +6,20 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/08 18:14:08 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/16 14:39:05 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/16 14:54:33 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_malloc.h"
 
 t_page				g_page;
+
+void				show_alloc_mem(void)
+{
+	ft_print_tiny();
+	ft_print_small();
+	ft_print_large();
+}
 
 void				*malloc(size_t size)
 {

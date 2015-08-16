@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 09:41:22 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/16 12:34:57 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/16 14:53:39 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ t_large				*ft_large_find(t_large *large_head, int nblarge);
 void				ft_print_tiny(void);
 void				ft_print_small(void);
 void				ft_print_large(void);
+void				show_alloc_mem();
 size_t				tiny_size(void);
 size_t				small_size(void);
 void				ft_nope(void);

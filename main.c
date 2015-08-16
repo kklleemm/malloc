@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 10:01:19 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/16 14:46:24 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/16 14:53:00 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ int		main(int ac, char **av)
 	}
 	else
 		ft_putendl("Usage : ./test T|S|L|R nbmalloc [size]");
-	ft_print_tiny();
-	ft_print_small();
-	ft_print_large();
+	show_alloc_mem();
 	return (0);
 }
