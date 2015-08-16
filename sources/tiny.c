@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/16 12:01:56 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/16 17:04:20 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/16 18:11:25 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void				ft_print_tiny(void)
 			{
 				ft_atoi_hex((void *)(tiny->firstblock + 16));
 				ft_putstr(" - ");
+				printf("");
 				ft_atoi_hex((void *)(tiny->firstblock + tiny->size));
 				ft_putstr(" : ");
 				ft_putnbr((int)(get_mem_size(tiny->firstblock)));

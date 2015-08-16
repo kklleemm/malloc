@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/11 14:54:40 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/16 16:26:30 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/16 18:22:23 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void			*set_header(void **firstblock, size_t size)
 	while (get_mem_size(firstblock))
 		firstblock = *firstblock;
 	header = (void *)firstblock;
-	header[0] = (void *)(header + (int)size + 16);
+	header[0] = (void *)(header + ((int)size + 16) / 8);
 	ssize = (int *)(firstblock + 8);
 	ssize[0] = size;
 	flag = (int *)(firstblock + 12);
