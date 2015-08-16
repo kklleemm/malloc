@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/08 18:14:08 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/16 14:54:33 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/16 17:03:44 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ void				*malloc(size_t size)
 	if (getrlimit(RLIMIT_AS, &rlp) < 0)
 		return (NULL);
 	if (size <= TINY)
-		ret = ft_malloc_tiny(size);
+		ret = ft_malloc_tiny((int)size);
 	else if (size <= SMALL)
-		ret = ft_malloc_small(size);
+		ret = ft_malloc_small((int)size);
 	else
-		ret = ft_malloc_large(size);
+		ret = ft_malloc_large((int)size);
 	return (ret);
 }

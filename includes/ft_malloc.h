@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 09:41:22 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/16 14:53:39 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/16 17:06:16 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@
 # define FLAGS PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANON
 # define FLAGS2 PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANON
 # define TINY 512
+# define n 512
+# define m 4096
+# define N 102400
+# define M 409600
 # define TINY_PAGE 102400
 # define SMALL 4096
 # define SMALL_PAGE 409600
@@ -71,12 +75,12 @@ void				*ft_realloc(void *ptr, size_t size);
 void				*set_header(void **firstblock, size_t size);
 void				*realloc(void *ptr, size_t size);
 void				*malloc(size_t size);
-void				*ft_malloc_tiny(size_t size);
-void				*ft_malloc_small(size_t size);
-void				*ft_malloc_large(size_t size);
+void				*ft_malloc_tiny(int size);
+void				*ft_malloc_small(int size);
+void				*ft_malloc_large(int size);
 t_tiny				*ft_new_tiny(void);
 t_small				*ft_new_small(void);
-t_large				*ft_new_large(size_t size);
+t_large				*ft_new_large(int size);
 t_tiny				*ft_tiny_find(t_tiny *tiny_head, int nbtiny);
 t_small				*ft_small_find(t_small *small_head, int nbsmall);
 t_large				*ft_large_find(t_large *large_head, int nblarge);
