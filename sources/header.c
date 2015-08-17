@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/11 14:54:40 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/16 18:22:23 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/17 20:34:42 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,36 +19,26 @@
 
 #include "ft_malloc.h"
 
-int				get_mem_size(void **firstblock)
-{
-	int 		*size_mem;
-
-	size_mem = (int *)(firstblock + 8);
-	return (size_mem[0]);
-}
-
 int				modif_mem_size(void **firstblock, int size)
 {
 	int 		*size_mem;
 
-	size_mem = (int *)(firstblock + 8);
+	size_mem = (int *)(firstblock) + 8;
 	size_mem[0] = size;
 	return (size_mem[0]);
 }
 
-void			*set_header(void **firstblock, size_t size)
+void			*set_header(void *firstblock, int size)
 {
-	void		**header;
-	int			*flag;
-	int			*ssize;
+	t_header	*truc;
 
-	while (get_mem_size(firstblock))
-		firstblock = *firstblock;
-	header = (void *)firstblock;
-	header[0] = (void *)(header + ((int)size + 16) / 8);
-	ssize = (int *)(firstblock + 8);
-	ssize[0] = size;
-	flag = (int *)(firstblock + 12);
-	flag[0] = 1337;
-	return ((void *)(firstblock + 16));
+	truc = firstblock;
+	while (truc->next)
+		truc = truc->next;
+	truc->next = truc + size + 16;
+	truc = truc->next;
+	truc->next = NULL;
+	truc->size = size;
+	truc->flg = 1337;
+	return ((void *)(firstblock) + 16);
 }

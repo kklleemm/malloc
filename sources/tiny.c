@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/16 12:01:56 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/16 18:11:25 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/17 20:30:52 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,19 @@ void				ft_print_tiny(void)
 	{
 		ft_putstr("TINY : ");
 		ft_atoi_hex_nl(tiny->firstblock);
-		while (get_mem_size(tiny->firstblock))
+		while (tiny->firstblock)
 		{
-			if (check_flag(tiny->firstblock) == 1337)
+			if (tiny->firstblock->flg == 1337)
 			{
-				ft_atoi_hex((void *)(tiny->firstblock + 16));
+				ft_atoi_hex((void *)(tiny->firstblock) + 16);
 				ft_putstr(" - ");
-				printf("");
-				ft_atoi_hex((void *)(tiny->firstblock + tiny->size));
+				ft_atoi_hex((void *)(tiny->firstblock) + tiny->firstblock->size + 16);
 				ft_putstr(" : ");
-				ft_putnbr((int)(get_mem_size(tiny->firstblock)));
+				ft_putnbr(tiny->firstblock->size);
 				ft_putstr(" octets        ");
-				print_mem((void *)(tiny->firstblock + 16));
+				print_mem((void *)(tiny->firstblock));
 			}
-			tiny->firstblock = *tiny->firstblock;
+			tiny->firstblock = tiny->firstblock->next;
 		}
 		tiny = tiny->next;
 	}

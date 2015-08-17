@@ -6,19 +6,11 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/14 12:38:48 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/16 12:03:44 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/17 20:27:01 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_malloc.h"
-
-int					check_flag(void **header)
-{
-	int				*flag;
-
-	flag = (int *)(header + 12);
-	return (flag[0]);
-}
 
 void				print_mem(void *mem)
 {

@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 09:41:22 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/16 19:21:34 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/17 20:41:30 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,17 @@
 # define TINY_PAGE 102400
 # define SMALL 4096
 # define SMALL_PAGE 409600
-# define NN NULL
+
+typedef struct		s_header
+{
+	void			*next;
+	int				size;
+	int				flg;
+}					t_header;
 
 typedef struct		s_tiny
 {
-	void			**firstblock;
+	t_header		*firstblock;
 	void			*next;
 	int				size;
 }					t_tiny;
@@ -72,7 +78,7 @@ void				free(void *ptr);
 void				print_mem(void *mem);
 void				*malloc(size_t size);
 void				*ft_realloc(void *ptr, size_t size);
-void				*set_header(void **firstblock, size_t size);
+void				*set_header(void *firstblock, int size);
 void				*realloc(void *ptr, size_t size);
 void				*malloc(size_t size);
 void				*ft_malloc_tiny(int size);
@@ -94,7 +100,5 @@ void				ft_nope(void);
 void				ft_atoi_hex(void *ptr);
 void				ft_atoi_hex_nl(void *ptr);
 int					modif_mem_size(void **firstblock, int size);
-int					get_mem_size(void **firstblock);
-int					check_flag(void **firstblock);
 
 #endif

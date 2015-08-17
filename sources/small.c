@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/13 22:12:08 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/16 17:04:59 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/17 20:37:23 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,23 @@ void				ft_print_small(void)
 	if (!g_page.small_head)
 		return ;
 	small = (void *)g_page.small_head;
-	ft_putstr("SMALL : ");
 	while (small)
 	{
+		ft_putstr("SMALL : ");
 		ft_atoi_hex_nl(small->firstblock);
-		while (get_mem_size(small->firstblock))
+		while (small->firstblock)
 		{
-			if (check_flag(small->firstblock) == 1337)
+			if (small->firstblock->flg == 1337)
 			{
 				ft_atoi_hex((void *)(small->firstblock + 16));
 				ft_putstr(" - ");
-				ft_atoi_hex((void *)(small->firstblock + small->size));
+				ft_atoi_hex((void *)(small->firstblock + small->firstblock->size));
 				ft_putstr(" : ");
-				ft_putnbr((int)(get_mem_size(small->firstblock)));
+				ft_putnbr((int)small->firstblock->size);
 				ft_putstr(" octets        ");
 				print_mem((void *)(small->firstblock + 16));
 			}
-			small->firstblock = *small->firstblock;
+			small->firstblock = small->firstblock->next;
 		}
 		small = small->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 10:01:19 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/16 14:53:00 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/17 18:07:00 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,11 @@ int		main(int ac, char **av)
 	i = -1;
 	if (ac == 3)
 	{
-		if (ft_strcmp(av[1], "T") == 0)
-		while (++i < ft_atoi(av[2]))
-			sampletext = malloc(10);
-	else if (ft_strcmp(av[1], "S") == 0)
-		while (++i < ft_atoi(av[2]))
-			sampletext = malloc(1000);
-	}
-	else if (ac == 4 && !ft_strcmp(av[1], "L"))
-	{
-		if (ft_atoi(av[3]) > 4096)
-			while (++i < ft_atoi(av[2]))
-				sampletext = malloc(ft_atoi(av[3]));
+			while (++i < ft_atoi(av[1]))
+				sampletext = malloc(ft_atoi(av[2]));
 	}
 	else
-		ft_putendl("Usage : ./test T|S|L|R nbmalloc [size]");
+		ft_putendl("Usage : ./test (R) nbmalloc size");
 	show_alloc_mem();
 	return (0);
 }
