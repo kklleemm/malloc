@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/11 14:54:40 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/18 16:30:40 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/18 16:40:40 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void			*set_header(void *firstblock, int size)
 	truc = firstblock;
 	while (truc->next)
 		truc = truc->next;
-	truc->next = (void *)(truc) + sizeof(t_header) + size;
+	truc->next = (void *)(truc) + sizeof(t_header) + truc->size;
 	truc = truc->next;
 	truc->next = NULL;
 	truc->size = size;

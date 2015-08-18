@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/16 12:01:56 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/18 16:29:57 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/18 16:35:45 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,7 @@ void				*ft_malloc_tiny(int size)
 	}
 	page = ft_tiny_find(g_page.tiny_head, g_page.nb_tiny);
 	if (!((int)page->totalsize + size + 16 > (TINY_PAGE - 116)))
-	{
-		//printf("totalsize=%i + %i + 16 : TINY_PAGE=102400\n", page->totalsize, size);
 		page->totalsize += size + 16;
-	}
 	else
 	{
 		page->next = ft_new_tiny(size);
