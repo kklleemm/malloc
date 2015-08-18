@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/13 22:12:08 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/18 15:39:59 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/18 20:48:15 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void				ft_print_small(void)
 				ft_putstr(" : ");
 				ft_putnbr(small->firstblock->size);
 				ft_putstr(" octets        ");
-				print_mem((void *)(small->firstblock));
+				print_mem((void *)(small->firstblock) + 16);
 			}
 			small->firstblock = small->firstblock->next;
 		}
@@ -84,7 +84,7 @@ t_small				*ft_new_small(int size)
 
 	new = mmap(0, sizeof(t_small) + 1, FLAGS, -1, 0);
 	new->firstblock = mmap(0, SMALL_PAGE, FLAGS, -1, 0);
-	new->totalsize = size + 16;
+	new->totalsize = size;
 	new->next = NULL;
 	return (new);
 }

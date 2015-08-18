@@ -6,16 +6,17 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/07 14:52:26 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/15 17:36:13 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/18 20:46:48 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_malloc.h"
 
-void		free(void *ptr)
+void			free(void *ptr)
 {
-	int		flag;
+	t_header	*pouet;
 
-	flag = (int)(ptr + 12);
-	flag = 0;
+	pouet = ptr - 16;
+	if (pouet->flg == 1337)
+		pouet->flg = 0;
 }

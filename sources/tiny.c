@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/16 12:01:56 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/18 16:35:45 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/18 20:47:12 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,11 @@ void				ft_print_tiny(void)
 				ft_putstr(" : ");
 				ft_putnbr(tiny->firstblock->size);
 				ft_putstr(" octets        ");
-				print_mem((void *)(tiny->firstblock));
+				print_mem((void *)(tiny->firstblock) + 16);
 			}
 			tiny->firstblock = tiny->firstblock->next;
 		}
-		if (tiny->next)
-			tiny = tiny->next;
-		else
-			break ;
+		tiny = tiny->next;
 	}
 }
 
@@ -57,7 +54,7 @@ void				*ft_malloc_tiny(int size)
 		g_page.tiny_head = ft_new_tiny(size);
 	}
 	page = ft_tiny_find(g_page.tiny_head, g_page.nb_tiny);
-	if (!((int)page->totalsize + size + 16 > (TINY_PAGE - 116)))
+	if (!((int)page->totalsize + size + 16 > (TINY_PAGE)))
 		page->totalsize += size + 16;
 	else
 	{
@@ -87,7 +84,7 @@ t_tiny				*ft_new_tiny(int size)
 
 	new = mmap(0, sizeof(t_tiny) + 1, FLAGS, -1, 0);
 	new->firstblock = mmap(0, TINY_PAGE, FLAGS, -1, 0);
-	new->totalsize = size + 16;
+	new->totalsize = size;
 	new->next = NULL;
 	return (new);
 }

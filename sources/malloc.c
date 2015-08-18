@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/08 18:14:08 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/18 16:25:39 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/18 16:42:45 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void				show_alloc_mem(void)
 {
 	ft_print_tiny();
 	ft_print_small();
-//	ft_print_large();
+	ft_print_large();
 }
 
 void				*malloc(size_t size)

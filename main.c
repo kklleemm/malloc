@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 10:01:19 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/17 18:07:00 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/18 18:14:04 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int		main(int ac, char **av)
 	{
 			while (++i < ft_atoi(av[1]))
 				sampletext = malloc(ft_atoi(av[2]));
+			ft_strcpy(sampletext, "bjr a tous\n");
 	}
 	else
 		ft_putendl("Usage : ./test (R) nbmalloc size");

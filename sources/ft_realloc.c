@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/15 18:07:06 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/17 20:29:06 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/18 18:34:38 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,11 @@
 void		*ft_realloc(void *ptr, size_t size)
 {
 	void	*ret;
-	void	**tmp;
 
 	ret = NULL;
-	tmp = (ptr - 16 * 8);
 	if (ptr == NULL)
 		ret = malloc(size);
-		ret = malloc(size);
-		ft_memcpy(ret + 16, ptr, size);
-		free(ptr);
+	free (ptr);
+	ret = malloc(size);
 	return (ret);
 }
