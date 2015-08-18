@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 09:41:22 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/17 20:41:30 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/18 15:00:03 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@ typedef struct		s_tiny
 {
 	t_header		*firstblock;
 	void			*next;
-	int				size;
+	int				totalsize;
 }					t_tiny;
 
 typedef struct		s_small
 {
 	void			**firstblock;
 	void			*next;
-	int				size;
+	int				totalsize;
 }					t_small;
 
 typedef struct		s_large
@@ -84,8 +84,8 @@ void				*malloc(size_t size);
 void				*ft_malloc_tiny(int size);
 void				*ft_malloc_small(int size);
 void				*ft_malloc_large(int size);
-t_tiny				*ft_new_tiny(void);
-t_small				*ft_new_small(void);
+t_tiny				*ft_new_tiny(int size);
+t_small				*ft_new_small(int size);
 t_large				*ft_new_large(int size);
 t_tiny				*ft_tiny_find(t_tiny *tiny_head, int nbtiny);
 t_small				*ft_small_find(t_small *small_head, int nbsmall);

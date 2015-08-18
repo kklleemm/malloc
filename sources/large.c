@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/13 22:23:32 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/16 17:05:37 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/18 15:40:49 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void				ft_print_large(void)
 	while (large)
 	{
 		ft_putstr("LARGE : ");
-		ft_atoi_hex((void *)(large->page + 16));
+		ft_atoi_hex(large->page);
 		ft_putstr(" - ");
 		ft_atoi_hex((void *)(large->page + large->size));
 		ft_putstr(" : ");
