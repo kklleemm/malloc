@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/11 14:54:40 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/19 18:15:14 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/19 19:10:29 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@
 */
 
 #include "ft_malloc.h"
+
+int				mulpagesize(int size)
+{
+	size /= getpagesize();
+	size++;
+	size *= getpagesize();
+	return(size);
+}
 
 void			*set_header(void *firstblock, int size, int first)
 {

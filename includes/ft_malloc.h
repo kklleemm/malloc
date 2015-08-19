@@ -6,17 +6,14 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 09:41:22 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/19 18:16:52 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/19 19:04:20 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_MALLOC_H
 # define FT_MALLOC_H
 
-# include <stdio.h>
 # include <sys/mman.h>
-# include <sys/resource.h>
-# include <sys/time.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <pthread.h>
@@ -95,5 +92,6 @@ void				ft_nope(void);
 void				ft_atoi_hex(void *ptr);
 void				ft_atoi_hex_nl(void *ptr);
 int					modif_mem_size(void **firstblock, int size);
+int					mulpagesize(int size);
 
 #endif
