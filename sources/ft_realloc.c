@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/15 18:07:06 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/19 18:14:56 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/19 19:52:40 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ void		*calloc(size_t count, size_t size)
 
 	ret = NULL;
 	ret = malloc(count * size);
+	bzero(ret, count * size);
 	return (ret);
 }
