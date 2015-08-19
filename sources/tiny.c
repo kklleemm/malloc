@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/16 12:01:56 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/18 20:47:12 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/19 15:29:15 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,13 @@ void				ft_print_tiny(void)
 		ft_atoi_hex_nl(tiny->firstblock);
 		while (tiny->firstblock)
 		{
-			if (tiny->firstblock->flg == 1337)
-			{
-				ft_atoi_hex((void *)(tiny->firstblock) + 16);
-				ft_putstr(" - ");
-				ft_atoi_hex((void *)(tiny->firstblock) + tiny->firstblock->size + 16);
-				ft_putstr(" : ");
-				ft_putnbr(tiny->firstblock->size);
-				ft_putstr(" octets        ");
-				print_mem((void *)(tiny->firstblock) + 16);
-			}
+			ft_atoi_hex((void *)(tiny->firstblock) + 16);
+			ft_putstr(" - ");
+			ft_atoi_hex((void *)(tiny->firstblock) + tiny->firstblock->size + 16);
+			ft_putstr(" : ");
+			ft_putnbr(tiny->firstblock->size);
+			ft_putstr(" octets        ");
+			print_mem((void *)(tiny->firstblock) + 16);
 			tiny->firstblock = tiny->firstblock->next;
 		}
 		tiny = tiny->next;
@@ -45,35 +42,35 @@ void				*ft_malloc_tiny(int size)
 {
 	void			*ret;
 	t_tiny			*page;
+	int				first;
 
 	ret = NULL;
 	page = NULL;
+	first = 0;
 	if (!g_page.tiny_head)
 	{
-		g_page.nb_tiny = 1;
 		g_page.tiny_head = ft_new_tiny(size);
+		first = 1;
 	}
-	page = ft_tiny_find(g_page.tiny_head, g_page.nb_tiny);
-	if (!((int)page->totalsize + size + 16 > (TINY_PAGE)))
+	page = ft_tiny_find(g_page.tiny_head);
+	if (page->totalsize + size + 16 < (TINY_PAGE - 32))
 		page->totalsize += size + 16;
 	else
 	{
 		page->next = ft_new_tiny(size);
 		page = page->next;
-		g_page.nb_tiny++;
+		first = 1;
 	}
-	ret = set_header(page->firstblock, size);
+	ret = set_header(page->firstblock, size, first);
 	return (ret);
 }
 
-t_tiny				*ft_tiny_find(t_tiny *page, int nbtiny)
+t_tiny				*ft_tiny_find(t_tiny *page)
 {
 	t_tiny			*cpy;
-	int				i;
 
-	i = 0;
 	cpy = page;
-	while (++i < nbtiny)
+	while (cpy->next)
 		cpy = cpy->next;
 	return (cpy);
 }

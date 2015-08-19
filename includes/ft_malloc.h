@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 09:41:22 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/18 17:14:55 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/19 15:42:17 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct		s_tiny
 
 typedef struct		s_small
 {
-	void			**firstblock;
+	t_header		*firstblock;
 	void			*next;
 	int				totalsize;
 }					t_small;
@@ -66,9 +66,6 @@ typedef struct		s_page
 	t_tiny			*tiny_head;
 	t_small			*small_head;
 	t_large			*large_head;
-	int				nb_tiny;
-	int				nb_small;
-	int				nb_large;
 	int				print;
 }					t_page;
 
@@ -78,7 +75,7 @@ void				free(void *ptr);
 void				print_mem(void *mem);
 void				*malloc(size_t size);
 void				*ft_realloc(void *ptr, size_t size);
-void				*set_header(void *firstblock, int size);
+void				*set_header(void *firstblock, int size, int first);
 void				*realloc(void *ptr, size_t size);
 void				*malloc(size_t size);
 void				*ft_malloc_tiny(int size);
@@ -87,9 +84,9 @@ void				*ft_malloc_large(int size);
 t_tiny				*ft_new_tiny(int size);
 t_small				*ft_new_small(int size);
 t_large				*ft_new_large(int size);
-t_tiny				*ft_tiny_find(t_tiny *tiny_head, int nbtiny);
-t_small				*ft_small_find(t_small *small_head, int nbsmall);
-t_large				*ft_large_find(t_large *large_head, int nblarge);
+t_tiny				*ft_tiny_find(t_tiny *tiny_head);
+t_small				*ft_small_find(t_small *small_head);
+t_large				*ft_large_find(t_large *large_head);
 void				ft_print_tiny(void);
 void				ft_print_small(void);
 void				ft_print_large(void);

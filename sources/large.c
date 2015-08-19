@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/13 22:23:32 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/18 15:40:49 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/19 14:43:37 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,27 +41,21 @@ void				*ft_malloc_large(int size)
 	ret = NULL;
 	alloc = NULL;
 	if (!g_page.large_head)
-	{
-		g_page.nb_large = 1;
 		g_page.large_head = ft_new_large(size);
-	}
 	else
 	{
-		alloc = ft_large_find(g_page.large_head, g_page.nb_large);
-		g_page.nb_large++;
+		alloc = ft_large_find(g_page.large_head);
 		alloc->next = ft_new_large(size);
 	}
 	return (ret);
 }
 
-t_large				*ft_large_find(t_large *page, int nblarge)
+t_large				*ft_large_find(t_large *page)
 {
 	t_large			*cpy;
-	int				i;
 
-	i = 0;
 	cpy = page;
-	while (++i < nblarge)
+	while (cpy->next)
 		cpy = cpy->next;
 	return (cpy);
 }

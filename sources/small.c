@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/08/13 22:12:08 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/18 20:48:15 by cdeniau          ###   ########.fr       */
+/*   Created: 2015/08/19 15:30:14 by cdeniau           #+#    #+#             */
+/*   Updated: 2015/08/19 15:42:42 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void				ft_print_small(void)
 {
-	t_tiny			*small;
+	t_small			*small;
 
 	if (!g_page.small_head)
 		return ;
@@ -25,16 +25,13 @@ void				ft_print_small(void)
 		ft_atoi_hex_nl(small->firstblock);
 		while (small->firstblock)
 		{
-			if (small->firstblock->flg == 1337)
-			{
-				ft_atoi_hex((void *)(small->firstblock + 16));
-				ft_putstr(" - ");
-				ft_atoi_hex((void *)(small->firstblock) + small->firstblock->size + 16);
-				ft_putstr(" : ");
-				ft_putnbr(small->firstblock->size);
-				ft_putstr(" octets        ");
-				print_mem((void *)(small->firstblock) + 16);
-			}
+			ft_atoi_hex((void *)(small->firstblock) + 16);
+			ft_putstr(" - ");
+			ft_atoi_hex((void *)(small->firstblock) + small->firstblock->size + 16);
+			ft_putstr(" : ");
+			ft_putnbr(small->firstblock->size);
+			ft_putstr(" octets        ");
+			print_mem((void *)(small->firstblock) + 16);
 			small->firstblock = small->firstblock->next;
 		}
 		small = small->next;
@@ -45,35 +42,35 @@ void				*ft_malloc_small(int size)
 {
 	void			*ret;
 	t_small			*page;
+	int				first;
 
 	ret = NULL;
 	page = NULL;
+	first = 0;
 	if (!g_page.small_head)
 	{
-		g_page.nb_small = 1;
 		g_page.small_head = ft_new_small(size);
+		first = 1;
 	}
-	page = ft_small_find(g_page.small_head, g_page.nb_small);
-	if (!(page->totalsize + size + 16 > (SMALL_PAGE)))
+	page = ft_small_find(g_page.small_head);
+	if (page->totalsize + size + 16 < (SMALL_PAGE - 32))
 		page->totalsize += size + 16;
 	else
 	{
 		page->next = ft_new_small(size);
 		page = page->next;
-		g_page.nb_small++;
+		first = 1;
 	}
-	ret = set_header(page->firstblock, size);
+	ret = set_header(page->firstblock, size, first);
 	return (ret);
 }
 
-t_small				*ft_small_find(t_small *page, int nbsmall)
+t_small				*ft_small_find(t_small *page)
 {
 	t_small			*cpy;
-	int				i;
 
-	i = 0;
 	cpy = page;
-	while (++i < nbsmall)
+	while (cpy->next)
 		cpy = cpy->next;
 	return (cpy);
 }

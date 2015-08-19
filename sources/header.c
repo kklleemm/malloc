@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/11 14:54:40 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/18 20:46:50 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/19 15:27:31 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,18 @@
 
 #include "ft_malloc.h"
 
-void			*set_header(void *firstblock, int size)
+void			*set_header(void *firstblock, int size, int first)
 {
 	t_header	*truc;
 
 	truc = firstblock;
 	while (truc->next)
 		truc = truc->next;
-	truc->next = (void *)(truc) + sizeof(t_header) + truc->size;
-	truc = truc->next;
+	if (!first)
+	{
+		truc->next = (char *)(truc) + sizeof(t_header) + truc->size;
+		truc = truc->next;
+	}
 	truc->next = NULL;
 	truc->size = size;
 	truc->flg = 1337;
