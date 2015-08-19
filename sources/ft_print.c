@@ -6,11 +6,17 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/14 12:38:48 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/17 20:27:01 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/19 17:55:06 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_malloc.h"
+
+void				*ft_overninethousand(void)
+{
+	ft_putendl("oh no");
+	return (NULL);
+}
 
 void				print_mem(void *mem)
 {

@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 09:41:22 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/19 17:35:10 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/19 18:16:52 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,6 @@
 # define FLAGS PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANON
 # define FLAGS2 PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANON
 # define TINY 512
-# define n 512
-# define m 4096
-# define N 102400
-# define M 409600
 # define TINY_PAGE 102400
 # define SMALL 4096
 # define SMALL_PAGE 409600
@@ -85,6 +81,7 @@ void				*ft_malloc_large(int size);
 t_tiny				*ft_new_tiny(int size);
 t_small				*ft_new_small(int size);
 t_large				*ft_new_large(int size);
+void				*ft_overninethousand(void);
 t_tiny				*ft_tiny_find(t_tiny *tiny_head);
 t_small				*ft_small_find(t_small *small_head);
 t_large				*ft_large_find(t_large *large_head);

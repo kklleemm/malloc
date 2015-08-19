@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/19 16:18:32 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/19 16:39:01 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/19 18:15:32 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,10 @@ t_large				*ft_new_large(int size)
 {
 	t_large	*new;
 
-	new = mmap(0, sizeof(t_large) + 1, FLAGS, -1, 0);
-	new->page = mmap(0, size, FLAGS, -1, 0);
+	if ((new = mmap(0, sizeof(t_large) + 1, FLAGS, -1, 0)) == MAP_FAILED)
+		return (ft_overninethousand());
+	if ((new->page = mmap(0, size, FLAGS, -1, 0)) == MAP_FAILED)
+		return (ft_overninethousand());
 	new->size = size;
 	new->next = NULL;
 	return (new);

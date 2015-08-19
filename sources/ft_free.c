@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/07 14:52:26 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/19 16:42:56 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/19 18:14:33 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,4 @@ void			free(void *ptr)
 	pouet = ptr - 16;
 	if (pouet->flg == 1337)
 		pouet->flg = 0;
-	//ptr = NULL;
 }

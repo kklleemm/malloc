@@ -6,16 +6,16 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/11 14:54:40 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/19 15:27:31 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/19 18:15:14 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
- **	header :
- **	| 4 Bytes | 4 Bytes | 4 Bytes | 4 Bytes
- **	| void *next_block  | current |  Flag	(0 = not allocated)
- **						   size
- **/
+**	header :
+**	| 4 Bytes | 4 Bytes | 4 Bytes | 4 Bytes
+**	| void *next_block  | current |  Flag	(0 = not allocated)
+**						   size
+*/
 
 #include "ft_malloc.h"
 

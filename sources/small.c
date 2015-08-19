@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/19 15:30:14 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/19 15:42:42 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/19 18:15:54 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void				ft_print_small(void)
 		{
 			ft_atoi_hex((void *)(small->firstblock) + 16);
 			ft_putstr(" - ");
-			ft_atoi_hex((void *)(small->firstblock) + small->firstblock->size + 16);
+			ft_atoi_hex((void *)(small->firstblock) +
+					small->firstblock->size + 16);
 			ft_putstr(" : ");
 			ft_putnbr(small->firstblock->size);
 			ft_putstr(" octets        ");
@@ -79,8 +80,10 @@ t_small				*ft_new_small(int size)
 {
 	t_small	*new;
 
-	new = mmap(0, sizeof(t_small) + 1, FLAGS, -1, 0);
-	new->firstblock = mmap(0, SMALL_PAGE, FLAGS, -1, 0);
+	if ((new = mmap(0, sizeof(t_small) + 1, FLAGS, -1, 0)) == MAP_FAILED)
+		return (ft_overninethousand());
+	if ((new->firstblock = mmap(0, SMALL_PAGE, FLAGS, -1, 0)) == MAP_FAILED)
+		return (ft_overninethousand());
 	new->totalsize = size;
 	new->next = NULL;
 	return (new);

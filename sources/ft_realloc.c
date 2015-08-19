@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/15 18:07:06 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/19 17:36:51 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/08/19 18:14:56 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void		*realloc(void *ptr, size_t size)
 {
 	if (ptr != NULL)
-		free (ptr);
+		free(ptr);
 	ptr = malloc(size);
 	return (ptr);
 }
