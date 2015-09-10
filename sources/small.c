@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/19 15:30:14 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/19 18:15:54 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/09/10 19:05:32 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void				ft_print_small(void)
 	}
 }
 
-void				*ft_malloc_small(int size)
+void				*ft_malloc_small(size_t size)
 {
 	void			*ret;
 	t_small			*page;
@@ -76,7 +76,7 @@ t_small				*ft_small_find(t_small *page)
 	return (cpy);
 }
 
-t_small				*ft_new_small(int size)
+t_small				*ft_new_small(size_t size)
 {
 	t_small	*new;
 

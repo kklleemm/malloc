@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/11 14:54:40 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/19 19:49:57 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/09/10 19:05:57 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int				mulpagesize(int size)
 	return (size);
 }
 
-void			*set_header(void *firstblock, int size, int first)
+void			*set_header(void *firstblock, size_t size, int first)
 {
 	t_header	*truc;
 
