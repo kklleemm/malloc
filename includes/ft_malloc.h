@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 09:41:22 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/09/17 14:00:00 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/09/17 17:26:44 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,21 +54,24 @@ void				free(void *ptr);
 void				print_mem(void *mem);
 void				*malloc(size_t size);
 void				*realloc(void *ptr, size_t size);
+char				get_type(size_t size);
 void				*calloc(size_t count, size_t size);
 void				*set_header(void *firstblock, size_t size, int first);
 void				*realloc(void *ptr, size_t size);
 void				*malloc(size_t size);
-void				*ft_malloc_large(size_t size);
-t_large				*ft_new_large(size_t size);
+//void				*ft_malloc_large(size_t size);
+//t_large				*ft_new_large(size_t size);
 void				*ft_overninethousand(void);
+void				ft_new_malloc(t_page *page, size_t size);
 void				ft_print_tiny(void);
 void				ft_print_small(void);
-void				ft_print_large(void);
+//void				ft_print_large(void);
 void				show_alloc_mem();
 void				ft_nope(void);
 void				ft_atoi_hex(void *ptr);
 void				ft_atoi_hex_nl(void *ptr);
 int					modif_mem_size(void **firstblock, int size);
 int					mulpagesize(int size);
+size_t				get_page_size(size_t size);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/16 12:01:56 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/09/17 13:48:06 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/09/17 17:26:55 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,27 +49,33 @@ char				get_type(size_t size)
 		return ('L');
 }
 
+size_t				get_page_size(size_t size)
+{
+	if (size < TINY)
+		return (TINY_PAGE);
+	else if (size < SMALL)
+		return (SMALL_PAGE);
+}
+
 void				*get_malloc(t_page *page, size_t size)
 {
 	void			*ret;
 	t_page			*cpy;
 	char			type;
 
-	type = get_type;
 	ret = NULL;
-	cpy = NULL;
-	if (!g_page.tiny_head)
-		g_page.tiny_head = ft_new_malloc(size, type); // init ???
-	page = ft_find(g_page.tiny_head);
-	if (page->totalsize + size + 16 < (TINY_PAGE - 32))
-		page->totalsize += size + 16;
+	cpy = page;
+	first = 0;
+	cpy = ft_find(g_page.tiny_head);
+	if (cpy->totalsize + size + 16 < (get_page_size(size)))
+		cpy->totalsize += size + 16;
 	else
 	{
-		page->next = ft_new_tiny(size);
-		page = page->next;
+		cpy->next = ft_new_malloc(size);
+		cpy = cpy->next;
 		first = 1;
 	}
-	ret = set_header(page->firstblock, size, first);
+	cpy = set_header(cpy->firstblock, size, first);
 	return (page);
 }
 
@@ -83,13 +89,14 @@ t_page				*ft_find(t_tiny *page)
 	return (cpy);
 }
 
-t_page				*ft_new_malloc(size_t size)
+t_page				*ft_new_malloc(t_page *page, size_t size)
 {
 	t_page			*new;
 
-	if ((new = mmap(0, sizeof(t_tiny) + 1, FLAGS, -1, 0)) == MAP_FAILED)
+	if ((new = mmap(0, sizeof(t_page), FLAGS, -1, 0)) == MAP_FAILED)
 		return (ft_overninethousand());
-	if ((new->firstblock = mmap(0, TINY_PAGE, FLAGS, -1, 0)) == MAP_FAILED)
+	if ((new->firstblock = mmap(0, get_page_size(size), \
+					FLAGS, -1, 0)) == MAP_FAILED)
 		return (ft_overninethousand());
 	new->totalsize = size;
 	new->next = NULL;

@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/08 18:14:08 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/09/17 14:00:08 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/09/17 17:25:37 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,31 +18,32 @@ void				show_alloc_mem(void)
 {
 	ft_print_tiny();
 	ft_print_small();
-	ft_print_large();
+//	ft_print_large();
 }
 
 t_page				*find_page(size_t size)
 {
 	char			type;
+	t_page			*cpy;
 
 	type = get_type(size);
-	page = g_env.page;
-	while (page)
+	cpy = g_env.page;
+	while (cpy)
 	{
-		if (page->type == type && !page->full)
+		if (cpy->type == type && !cpy->full)
 		{
-			if ((page->size + size + 32) > get_max_size(type))
+			if ((cpy->totalsize + size + 32) > get_page_size(type))
 			{
-				page->full = 1;
+				cpy->full = 1;
 				return (NULL);
 			}
 			else
 			{
-				page->size += size + 32;
-				return (page);
+				cpy->totalsize += size + 32;
+				return (cpy);
 			}
 		}
-		page = page->next;
+		cpy = cpy->next;
 	}
 	return (NULL);
 }
@@ -57,8 +58,8 @@ void				*malloc(size_t size)
 		return (NULL);
 	if (rlp.rlim_cur < size)
 		return (NULL); // perror
-	if (size > SMALL)
-		ret = ft_malloc_large(size);
+	if (size >= SMALL)
+		;// large malloc
 	else if ((page = find_page(size)) != NULL)
 		return (ft_new_malloc(page, get_type(size)));
 	page = get_malloc(page, size);
