@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/16 12:01:56 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/09/10 19:04:45 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/09/17 13:48:06 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,21 +39,28 @@ void				ft_print_tiny(void)
 	}
 }
 
-void				*ft_malloc_tiny(size_t size)
+char				get_type(size_t size)
+{
+	if (size < TINY)
+		return ('T');
+	else if (size < SMALL)
+		return ('S');
+	else
+		return ('L');
+}
+
+void				*get_malloc(t_page *page, size_t size)
 {
 	void			*ret;
-	t_tiny			*page;
-	int				first;
+	t_page			*cpy;
+	char			type;
 
+	type = get_type;
 	ret = NULL;
-	page = NULL;
-	first = 0;
+	cpy = NULL;
 	if (!g_page.tiny_head)
-	{
-		g_page.tiny_head = ft_new_tiny(size);
-		first = 1;
-	}
-	page = ft_tiny_find(g_page.tiny_head);
+		g_page.tiny_head = ft_new_malloc(size, type); // init ???
+	page = ft_find(g_page.tiny_head);
 	if (page->totalsize + size + 16 < (TINY_PAGE - 32))
 		page->totalsize += size + 16;
 	else
@@ -63,12 +70,12 @@ void				*ft_malloc_tiny(size_t size)
 		first = 1;
 	}
 	ret = set_header(page->firstblock, size, first);
-	return (ret);
+	return (page);
 }
 
-t_tiny				*ft_tiny_find(t_tiny *page)
+t_page				*ft_find(t_tiny *page)
 {
-	t_tiny			*cpy;
+	t_page			*cpy;
 
 	cpy = page;
 	while (cpy->next)
@@ -76,9 +83,9 @@ t_tiny				*ft_tiny_find(t_tiny *page)
 	return (cpy);
 }
 
-t_tiny				*ft_new_tiny(size_t size)
+t_page				*ft_new_malloc(size_t size)
 {
-	t_tiny	*new;
+	t_page			*new;
 
 	if ((new = mmap(0, sizeof(t_tiny) + 1, FLAGS, -1, 0)) == MAP_FAILED)
 		return (ft_overninethousand());
