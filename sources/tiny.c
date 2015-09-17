@@ -6,19 +6,19 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/16 12:01:56 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/09/17 17:26:55 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/09/17 18:09:47 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_malloc.h"
 
-void				ft_print_tiny(void)
+/*void				ft_print_tiny(void)
 {
 	t_tiny			*tiny;
 
-	if (!g_page.tiny_head)
+	if (!g_env.tiny_head)
 		return ;
-	tiny = (void *)g_page.tiny_head;
+	tiny = (void *)g_env.tiny_head;
 	while (tiny)
 	{
 		ft_putstr("TINY : ");
@@ -37,7 +37,7 @@ void				ft_print_tiny(void)
 		}
 		tiny = tiny->next;
 	}
-}
+}*/
 
 char				get_type(size_t size)
 {
@@ -53,20 +53,19 @@ size_t				get_page_size(size_t size)
 {
 	if (size < TINY)
 		return (TINY_PAGE);
-	else if (size < SMALL)
-		return (SMALL_PAGE);
+	return (SMALL_PAGE);
 }
 
-void				*get_malloc(t_page *page, size_t size)
+t_page				*get_malloc(t_page *page, size_t size)
 {
 	void			*ret;
 	t_page			*cpy;
-	char			type;
+	int				first;
 
 	ret = NULL;
 	cpy = page;
 	first = 0;
-	cpy = ft_find(g_page.tiny_head);
+	cpy = ft_find(g_env.page);
 	if (cpy->totalsize + size + 16 < (get_page_size(size)))
 		cpy->totalsize += size + 16;
 	else
@@ -79,7 +78,7 @@ void				*get_malloc(t_page *page, size_t size)
 	return (page);
 }
 
-t_page				*ft_find(t_tiny *page)
+t_page				*ft_find(t_page *page)
 {
 	t_page			*cpy;
 
@@ -89,7 +88,7 @@ t_page				*ft_find(t_tiny *page)
 	return (cpy);
 }
 
-t_page				*ft_new_malloc(t_page *page, size_t size)
+t_page				*ft_new_malloc(size_t size)
 {
 	t_page			*new;
 

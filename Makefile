@@ -6,7 +6,7 @@
 #    By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/12/11 12:00:21 by cdeniau           #+#    #+#              #
-#    Updated: 2015/08/15 18:42:15 by cdeniau          ###   ########.fr        #
+#    Updated: 2015/09/17 18:10:14 by cdeniau          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,8 +32,6 @@ SRC			=		ft_atoi_hex.c \
 					ft_realloc.c \
 					ft_print.c \
 					tiny.c \
-					small.c \
-					large.c \
 					header.c \
 
 OBJ			=		$(SRC:.c=.o)

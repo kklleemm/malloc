@@ -6,12 +6,12 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/07 14:52:26 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/09/17 13:02:47 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/09/17 18:02:08 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_malloc.h"
-
+/*
 void			verify_empty_page(void *ptr, )
 {
 	t_page		*page;
@@ -50,4 +50,4 @@ void			free(void *ptr)
 		pouet->flg = 0;
 	ptr = NULL;
 	verify_empty_page(pouet);
-}
+} */

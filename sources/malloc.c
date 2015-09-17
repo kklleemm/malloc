@@ -6,18 +6,18 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/08 18:14:08 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/09/17 17:25:37 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/09/17 18:12:46 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_malloc.h"
 
-t_page				g_page;
+t_env				g_env;
 
 void				show_alloc_mem(void)
 {
-	ft_print_tiny();
-	ft_print_small();
+//	ft_print_tiny();
+//	ft_print_small();
 //	ft_print_large();
 }
 
@@ -61,9 +61,9 @@ void				*malloc(size_t size)
 	if (size >= SMALL)
 		;// large malloc
 	else if ((page = find_page(size)) != NULL)
-		return (ft_new_malloc(page, get_type(size)));
+		return ((void *)ft_new_malloc(size));
 	page = get_malloc(page, size);
 	//
 	//
-	return (page);
+	return ((void *)page);
 }
