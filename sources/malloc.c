@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/08 18:14:08 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/09/19 18:43:57 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/09/19 20:37:34 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,15 @@ void				*malloc(size_t size)
 	struct rlimit	rlp;
 
 	ret = NULL;
-	if (/*!(pthread_mutex_init(&g_lock, NULL)) ||*/ getrlimit(RLIMIT_AS, &rlp) < 0)
+	if (!(pthread_mutex_init(&g_lock, NULL)) || getrlimit(RLIMIT_AS, &rlp) < 0)
 		return (NULL);
-//	pthread_mutex_lock(&g_lock);
+	pthread_mutex_lock(&g_lock);
 	if (size <= TINY)
 		ret = ft_malloc_tiny(size);
 	else if (size <= SMALL)
 		ret = ft_malloc_small(size);
 	else
 		ret = ft_malloc_large(size);
-//	pthread_mutex_unlock(&g_lock);
+	pthread_mutex_unlock(&g_lock);
 	return (ret);
 }

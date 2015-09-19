@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 09:41:22 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/09/19 17:38:50 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/09/19 20:31:12 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct		s_large
 {
 	void			*page;
 	void			*next;
-	int				size;
+	size_t			size;
 }					t_large;
 
 typedef struct		s_page
