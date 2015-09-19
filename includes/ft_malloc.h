@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 09:41:22 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/09/10 19:05:26 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/09/17 18:12:23 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,65 +33,47 @@ typedef struct		s_header
 	int				flg;
 }					t_header;
 
-typedef struct		s_tiny
-{
-	t_header		*firstblock;
-	void			*next;
-	size_t			totalsize;
-}					t_tiny;
-
-typedef struct		s_small
-{
-	t_header		*firstblock;
-	void			*next;
-	size_t			totalsize;
-}					t_small;
-
-typedef struct		s_large
-{
-	void			*page;
-	void			*next;
-	int				size;
-}					t_large;
-
 typedef struct		s_page
 {
-	t_tiny			*tiny_head;
-	t_small			*small_head;
-	t_large			*large_head;
-	int				print;
+	void			*firstblock;
+	void			*next;
+	int				full;
+	char			type;
+	size_t			totalsize;
 }					t_page;
 
-extern t_page		g_page;
+typedef struct		s_env
+{
+	t_page			*page;
+	int				print;
+}					t_env;
+
+extern t_env		g_env;
 
 void				free(void *ptr);
 void				print_mem(void *mem);
 void				*malloc(size_t size);
-void				*realloc(void *ptr, size_t size);
+char				get_type(size_t size);
 void				*calloc(size_t count, size_t size);
 void				*set_header(void *firstblock, size_t size, int first);
 void				*realloc(void *ptr, size_t size);
-void				*malloc(size_t size);
-void				*ft_malloc_tiny(size_t size);
-void				*ft_malloc_small(size_t size);
-void				*ft_malloc_large(size_t size);
-t_tiny				*ft_new_tiny(size_t size);
-t_small				*ft_new_small(size_t size);
-t_large				*ft_new_large(size_t size);
+//void				*ft_malloc_large(size_t size);
+//t_large				*ft_new_large(size_t size);
 void				*ft_overninethousand(void);
-t_tiny				*ft_tiny_find(t_tiny *tiny_head);
-t_small				*ft_small_find(t_small *small_head);
-t_large				*ft_large_find(t_large *large_head);
+t_page				*ft_new_malloc(size_t size);
+t_page				*get_malloc(t_page *page, size_t size);
+t_page				*find_page(size_t size);
+t_page				*ft_find(t_page *page);
+void				*realloc(void *ptr, size_t size);
 void				ft_print_tiny(void);
 void				ft_print_small(void);
-void				ft_print_large(void);
+//void				ft_print_large(void);
 void				show_alloc_mem();
-size_t				tiny_size(void);
-size_t				small_size(void);
 void				ft_nope(void);
 void				ft_atoi_hex(void *ptr);
 void				ft_atoi_hex_nl(void *ptr);
 int					modif_mem_size(void **firstblock, int size);
 int					mulpagesize(int size);
+size_t				get_page_size(size_t size);
 
 #endif
