@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/14 12:38:48 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/08/19 19:47:03 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/09/19 15:52:23 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void				print_mem(void *mem)
 	int				i;
 	char			*str;
 
+	pthread_mutex_lock(pthread_mutex_t *mutex);
 	i = -1;
 	str = (char *)mem;
 	while (++i < 16)
@@ -35,4 +36,5 @@ void				print_mem(void *mem)
 			write(1, ".", 1);
 	}
 	ft_putchar(10);
+	pthread_mutex_unlock(pthread_mutex_t *mutex);
 }

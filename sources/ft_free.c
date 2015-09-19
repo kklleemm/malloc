@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/07 14:52:26 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/09/19 12:31:08 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/09/19 15:51:49 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void			free(void *ptr)
 	t_header	*header;
 	void		*cur_page;
 
+	pthread_mutex_lock(pthread_mutex_t *mutex);
 	header = (t_header *)ptr - 1;
 	if (!header->size)
 		return ; // not allocated
@@ -76,4 +77,5 @@ void			free(void *ptr)
 	if (check_empty_page(cur_page))
 		if (!(free_page(cur_page)))
 			; // print error
+	pthread_mutex_unlock(pthread_mutex_t *mutex);
 }
