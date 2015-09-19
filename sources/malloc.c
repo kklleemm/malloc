@@ -6,13 +6,14 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/08 18:14:08 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/09/19 15:51:08 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/09/19 17:33:20 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_malloc.h"
 
 t_page				g_page;
+pthread_mutex_t		g_lock = PTHREAD_MUTEX_INITIALIZER;
 
 void				show_alloc_mem(void)
 {
@@ -25,19 +26,17 @@ void				*malloc(size_t size)
 {
 	void			*ret;
 	struct rlimit	rlp;
-	int				pthread_mutex_init(pthread_mutex_t *mutex, \
-			const pthread_mutexattr_t *mutexattr);
 
 	ret = NULL;
-	if (getrlimit(RLIMIT_AS, &rlp) < 0)
+	if (!(pthread_mutex_init(&g_lock, NULL)) || getrlimit(RLIMIT_AS, &rlp) < 0)
 		return (NULL);
-	pthread_mutex_lock(pthread_mutex_t *mutex);
+	pthread_mutex_lock(&g_lock);
 	if (size <= TINY)
 		ret = ft_malloc_tiny(size);
 	else if (size <= SMALL)
 		ret = ft_malloc_small(size);
 	else
 		ret = ft_malloc_large(size);
-	pthread_mutex_unlock(pthread_mutex_t *mutex);
+	pthread_mutex_unlock(&g_lock);
 	return (ret);
 }

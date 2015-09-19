@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/16 12:01:56 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/09/19 11:35:23 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/09/19 17:19:04 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ void				ft_print_tiny(void)
 {
 	t_tiny			*tiny;
 
+	tiny = (void *)g_page.tiny_head;
 	if (!g_page.tiny_head)
 		return ;
-	tiny = (void *)g_page.tiny_head;
+	puts("lel");
 	while (tiny)
 	{
 		ft_putstr("TINY : ");

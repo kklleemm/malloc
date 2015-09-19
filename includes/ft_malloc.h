@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 09:41:22 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/09/19 11:34:10 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/09/19 17:38:50 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <pthread.h>
 # include "../libft/libft.h"
+# include <stdio.h>
 
 # define FLAGS PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANON
 # define FLAGS2 PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANON
@@ -63,6 +64,7 @@ typedef struct		s_page
 }					t_page;
 
 extern t_page		g_page;
+pthread_mutex_t 	g_lock;
 
 void				free(void *ptr);
 void				print_mem(void *mem);
