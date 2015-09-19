@@ -6,7 +6,7 @@
 #    By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/12/11 12:00:21 by cdeniau           #+#    #+#              #
-#    Updated: 2015/09/17 18:10:14 by cdeniau          ###   ########.fr        #
+#    Updated: 2015/09/19 11:36:31 by cdeniau          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,10 +21,10 @@ CC			=		gcc
 CFLAGS		=		-Wall -Werror -Wextra
 SRCDIR		=		./sources/
 SRCO		=		$(SRC:.c=.o)
-ODIR		=		./includes/
-LIB			=		./libft/libft.a
-INC			=		-I./includes -I./libft/includes
-LINK		=		-Llibft -lft
+	ODIR		=		./includes/
+	LIB			=		./libft/libft.a
+	INC			=		-I./includes -I./libft/includes
+	LINK		=		-Llibft -lft
 
 SRC			=		ft_atoi_hex.c \
 					malloc.c \
@@ -32,35 +32,37 @@ SRC			=		ft_atoi_hex.c \
 					ft_realloc.c \
 					ft_print.c \
 					tiny.c \
+					small.c \
+					large.c \
 					header.c \
 
 OBJ			=		$(SRC:.c=.o)
-OBJS		=		$(addprefix $(ODIR), $(OBJ))
+	OBJS		=		$(addprefix $(ODIR), $(OBJ))
 
 all			:		$(LIB) $(NAME)
 
 $(NAME)		:		$(OBJS)
-					$(CC) -shared -o $(NAME) $^ $(LINK) 
-					ln -s $(NAME) $(LS)
+	$(CC) -shared -o $(NAME) $^ $(LINK) 
+	ln -s $(NAME) $(LS)
 
 $(ODIR)%.o	:		$(SRCDIR)%.c
-					mkdir -p $(ODIR)
-					$(CC) $(CFLAGS) -c $^ $(INC) -o $@
+	mkdir -p $(ODIR)
+	$(CC) $(CFLAGS) -c $^ $(INC) -o $@
 
 $(LIB)		:
-					@make -C libft
+	@make -C libft
 
 clean		:
-					/bin/rm -f $(addprefix $(ODIR), $(OBJ)) 
-					make -C ./libft clean
+	/bin/rm -f $(addprefix $(ODIR), $(OBJ)) 
+	make -C ./libft clean
 
 fclean		:		clean
-					/bin/rm -rf $(LS)
-					make -C ./libft fclean
-					/bin/rm -rf $(NAME)
-					/bin/rm -rf test
+	/bin/rm -rf $(LS)
+	make -C ./libft fclean
+	/bin/rm -rf $(NAME)
+	/bin/rm -rf test
 
 re			:		fclean all
 
 test		:		re
-					gcc $(CFLAGS) -o test main.c $(LINK) $(NAME) $(INC) -g
+	gcc $(CFLAGS) -o test main.c $(LINK) $(NAME) $(INC) -g
