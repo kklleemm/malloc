@@ -6,15 +6,14 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/11 14:54:40 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/09/19 11:34:43 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/09/19 18:54:06 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
  **	header :
- **	| 4 Bytes | 4 Bytes | 4 Bytes | 4 Bytes
- **	| void *next_block  | current |  Flag	(0 = not allocated)
- **						   size
+ **	| 8 Bytes           | 8 Bytes           | 4 Bytes
+ **	| void *next_block  | current size      |  Flag	(0 = not allocated)
  */
 
 #include "ft_malloc.h"
@@ -29,18 +28,18 @@ int				mulpagesize(int size)
 
 void			*set_header(void *firstblock, size_t size, int first)
 {
-	t_header	*truc;
+	t_header	*cpy;
 
-	truc = firstblock;
-	while (truc->next)
-		truc = truc->next;
+	cpy = firstblock;
+	while (cpy->next && cpy->flg == 1337)
+		cpy = cpy->next;
 	if (!first)
 	{
-		truc->next = (char *)(truc) + sizeof(t_header) + truc->size;
-		truc = truc->next;
+		cpy->next = (char *)(cpy) + sizeof(t_header) + cpy->size;
+		cpy = cpy->next;
 	}
-	truc->next = NULL;
-	truc->size = size;
-	truc->flg = 1337;
-	return ((void *)(truc) + sizeof(t_header));
+	cpy->next = NULL;
+	cpy->size = size;
+	cpy->flg = 1337;
+	return ((void *)(cpy) + sizeof(t_header));
 }

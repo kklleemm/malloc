@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/16 12:01:56 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/09/19 17:19:04 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/09/19 18:44:39 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,23 @@ void				ft_print_tiny(void)
 {
 	t_tiny			*tiny;
 
-	tiny = (void *)g_page.tiny_head;
 	if (!g_page.tiny_head)
 		return ;
-	puts("lel");
+	tiny = (void *)g_page.tiny_head;
 	while (tiny)
 	{
 		ft_putstr("TINY : ");
 		ft_atoi_hex_nl(tiny->firstblock);
 		while (tiny->firstblock)
 		{
-			ft_atoi_hex((void *)(tiny->firstblock) + 16);
+			ft_atoi_hex((void *)(tiny->firstblock) + 24);
 			ft_putstr(" - ");
 			ft_atoi_hex((void *)(tiny->firstblock) +
-					tiny->firstblock->size + 16);
+					tiny->firstblock->size + 24);
 			ft_putstr(" : ");
 			ft_putnbr(tiny->firstblock->size);
 			ft_putstr(" octets        ");
-			print_mem((void *)(tiny->firstblock) + 16);
+			print_mem((void *)(tiny->firstblock) + 24);
 			tiny->firstblock = tiny->firstblock->next;
 		}
 		tiny = tiny->next;
@@ -55,10 +54,11 @@ void				*ft_malloc_tiny(size_t size)
 		first = 1;
 	}
 	page = ft_tiny_find(g_page.tiny_head);
-	if (page->totalsize + size + 16 < (TINY_PAGE - 32))
-		page->totalsize += size + 16;
+	if (page->totalsize + size + 24 < (TINY_PAGE))
+		page->totalsize += size + 24;
 	else
 	{
+		puts("else");
 		page->next = ft_new_tiny(size);
 		page = page->next;
 		first = 1;
