@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/07 14:52:26 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/09/19 18:59:00 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/09/21 18:01:53 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,27 +107,30 @@ void			free(void *ptr)
 	t_tiny		*cur_page_t;
 	t_small		*cur_page_s;
 
-	pthread_mutex_lock(&g_lock);
 	header = (t_header *)ptr - 1;
-	if (!header->size)
+	pthread_mutex_lock(&g_lock);
+	if ((header->flg != 1337 && header->flg != 1) || ptr == NULL)
+	{
+		pthread_mutex_unlock(&g_lock);
 		return ; // not allocated
-	header->flg = 0;
+	}
+	header->flg = 1;
 	ptr = NULL;
 	if (header->size < TINY)
 	{
 		cur_page_t = find_ptr_t(header);
-		cur_page_t->totalsize -= header->size + 24;
+		cur_page_t->totalsize -= (header->size + 24);
 		if (check_empty_page_t(cur_page_t))
 			if (!(free_page_t(cur_page_t)))
-				; // error
+				return ; // error
 	}
 	else if (header->size < SMALL)
 	{
 		cur_page_s = find_ptr_s(header);
-		cur_page_s->totalsize -= header->size + 24;
+		cur_page_s->totalsize -= (header->size + 24);
 		if (check_empty_page_s(cur_page_s))
 			if (!(free_page_s(cur_page_s)))
-				; // error
+				return ; // error
 	}
 //	else
 //	{
@@ -137,6 +140,4 @@ void			free(void *ptr)
 //				; // error
 //	}
 	pthread_mutex_unlock(&g_lock);
-	(void)cur_page_t;
-	(void)cur_page_s;
 }

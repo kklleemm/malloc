@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/16 12:01:56 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/09/19 18:44:39 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/09/21 17:14:27 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ void				ft_print_tiny(void)
 		ft_atoi_hex_nl(tiny->firstblock);
 		while (tiny->firstblock)
 		{
-			ft_atoi_hex((void *)(tiny->firstblock) + 24);
+			ft_atoi_hex((void *)(tiny->firstblock) + sizeof(t_header));
 			ft_putstr(" - ");
 			ft_atoi_hex((void *)(tiny->firstblock) +
-					tiny->firstblock->size + 24);
+					tiny->firstblock->size + sizeof(t_header));
 			ft_putstr(" : ");
 			ft_putnbr(tiny->firstblock->size);
 			ft_putstr(" octets        ");
-			print_mem((void *)(tiny->firstblock) + 24);
+			print_mem((void *)(tiny->firstblock) + sizeof(t_header));
 			tiny->firstblock = tiny->firstblock->next;
 		}
 		tiny = tiny->next;
@@ -43,27 +43,20 @@ void				*ft_malloc_tiny(size_t size)
 {
 	void			*ret;
 	t_tiny			*page;
-	int				first;
 
 	ret = NULL;
 	page = NULL;
-	first = 0;
 	if (!g_page.tiny_head)
-	{
-		g_page.tiny_head = ft_new_tiny(size);
-		first = 1;
-	}
+		g_page.tiny_head = ft_new_tiny();
 	page = ft_tiny_find(g_page.tiny_head);
-	if (page->totalsize + size + 24 < (TINY_PAGE))
-		page->totalsize += size + 24;
+	if (page->totalsize + size + sizeof(t_header) < (TINY_PAGE))
+		page->totalsize += size + sizeof(t_header);
 	else
 	{
-		puts("else");
-		page->next = ft_new_tiny(size);
+		page->next = ft_new_tiny();
 		page = page->next;
-		first = 1;
 	}
-	ret = set_header(page->firstblock, size, first);
+	ret = set_header(page->firstblock, size);
 	return (ret);
 }
 
@@ -77,7 +70,7 @@ t_tiny				*ft_tiny_find(t_tiny *page)
 	return (cpy);
 }
 
-t_tiny				*ft_new_tiny(size_t size)
+t_tiny				*ft_new_tiny(void)
 {
 	t_tiny	*new;
 
@@ -85,7 +78,7 @@ t_tiny				*ft_new_tiny(size_t size)
 		return (ft_overninethousand());
 	if ((new->firstblock = mmap(0, TINY_PAGE, FLAGS, -1, 0)) == MAP_FAILED)
 		return (ft_overninethousand());
-	new->totalsize = size;
+	new->totalsize = 0;
 	new->next = NULL;
 	return (new);
 }

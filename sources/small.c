@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/19 11:35:41 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/09/19 18:45:26 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/09/21 18:01:52 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ void				ft_print_small(void)
 		ft_atoi_hex_nl(small->firstblock);
 		while (small->firstblock)
 		{
-			ft_atoi_hex((void *)(small->firstblock) + 24);
+			ft_atoi_hex((void *)(small->firstblock) + sizeof(t_header));
 			ft_putstr(" - ");
 			ft_atoi_hex((void *)(small->firstblock) +
-					small->firstblock->size + 24);
+					small->firstblock->size + sizeof(t_header));
 			ft_putstr(" : ");
 			ft_putnbr(small->firstblock->size);
 			ft_putstr(" octets        ");
-			print_mem((void *)(small->firstblock) + 24);
+			print_mem((void *)(small->firstblock) + sizeof(t_header));
 			small->firstblock = small->firstblock->next;
 		}
 		small = small->next;
@@ -43,26 +43,20 @@ void				*ft_malloc_small(size_t size)
 {
 	void			*ret;
 	t_small			*page;
-	int				first;
 
 	ret = NULL;
 	page = NULL;
-	first = 0;
 	if (!g_page.small_head)
-	{
-		g_page.small_head = ft_new_small(size);
-		first = 1;
-	}
+		g_page.small_head = ft_new_small();
 	page = ft_small_find(g_page.small_head);
-	if (page->totalsize + size + 24 < (SMALL_PAGE))
-		page->totalsize += size + 24;
+	if (page->totalsize + size + sizeof(t_header) < (SMALL_PAGE))
+		page->totalsize += size + sizeof(t_header);
 	else
 	{
-		page->next = ft_new_small(size);
+		page->next = ft_new_small();
 		page = page->next;
-		first = 1;
 	}
-	ret = set_header(page->firstblock, size, first);
+	ret = set_header(page->firstblock, size);
 	return (ret);
 }
 
@@ -76,7 +70,7 @@ t_small				*ft_small_find(t_small *page)
 	return (cpy);
 }
 
-t_small				*ft_new_small(size_t size)
+t_small				*ft_new_small(void)
 {
 	t_small			*new;
 
@@ -84,7 +78,7 @@ t_small				*ft_new_small(size_t size)
 		return (ft_overninethousand());
 	if ((new->firstblock = mmap(0, SMALL_PAGE, FLAGS, -1, 0)) == MAP_FAILED)
 		return (ft_overninethousand());
-	new->totalsize = size;
+	new->totalsize = 0;
 	new->next = NULL;
 	return (new);
 }
