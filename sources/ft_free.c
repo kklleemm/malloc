@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/07 14:52:26 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/09/22 14:06:56 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/09/22 16:06:43 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,25 +102,42 @@ void			*find_ptr_s(t_header *header)
 	return (NULL);
 }
 
+int				close_chain(int i, t_large *next)
+{
+	t_large		*cpy;
+	int			j;
+
+	j = 0;
+	cpy = g_page.large_head;
+	while (j < i)
+	{
+		cpy = cpy->next;
+		j++;
+	}
+	cpy = next;
+	return (1);
+}
+
 int				free_page(void *ptr)
 {
 	t_large		*cpy;
+	int			i;
 
+	i = 0;
 	if (!g_page.large_head)
 		return (0);
 	cpy = g_page.large_head;
 	while (cpy->page)
 	{
-		if (cpy->page == ptr)
+		if (ptr == cpy->page)
 		{
-			cpy->next = ptr + 1;
-			return (munmap(ptr + 1, ptr->size, sizeof(ptr)));
+			munmap(ptr, cpy->size);
+			return (close_chain(i, cpy->next));
 		}
-		if (cpy->next)
-			cpy = cpy->next;
-		else
-			break ;
+		cpy = cpy->next;
+		i++;
 	}
+	return (1);
 }
 
 void			free(void *ptr)
@@ -131,6 +148,8 @@ void			free(void *ptr)
 
 	write (1, "f", 1);
 	write (1, "\n", 1);
+	if (ptr == NULL)
+		return ;
 	header = (t_header *)ptr - 1;
 	pthread_mutex_lock(&g_lock);
 	if ((header->flg != 1337 && header->flg != 1) || ptr == NULL)
