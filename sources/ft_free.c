@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/07 14:52:26 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/09/22 16:06:43 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/09/22 17:48:54 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,8 +146,6 @@ void			free(void *ptr)
 	t_tiny		*cur_page_t;
 	t_small		*cur_page_s;
 
-	write (1, "f", 1);
-	write (1, "\n", 1);
 	if (ptr == NULL)
 		return ;
 	header = (t_header *)ptr - 1;
