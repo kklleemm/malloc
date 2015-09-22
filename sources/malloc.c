@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/08 18:14:08 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/09/21 17:55:41 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/09/22 13:48:19 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ void				*malloc(size_t size)
 	ret = NULL;
 	if (pthread_mutex_init(&g_lock, NULL) || getrlimit(RLIMIT_AS, &rlp) < 0)
 		return (NULL);
+	write (1, "m", 1);
+	ft_putnbr(size);
+	write (1, "\n", 1);
 	pthread_mutex_lock(&g_lock);
 	if (size < TINY)
 		ret = ft_malloc_tiny(size);
