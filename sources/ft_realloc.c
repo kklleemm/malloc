@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/15 18:07:06 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/09/23 12:41:46 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/09/23 16:33:40 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void			*realloc(void *ptr, size_t size)
 	if (!(realloc_checks(ptr, get_type(size))))
 		return (NULL);
 	ret = getrealloc(size, ptr);
-	pthread_mutex_unlock(&g_lock);
 	return (ret);
 }
 
@@ -80,6 +79,6 @@ void			*calloc(size_t count, size_t size)
 
 	ret = NULL;
 	ret = malloc(count * size);
-	bzero(ret, count * size);
+	ft_bzero(ret, count * size);
 	return (ret);
 }

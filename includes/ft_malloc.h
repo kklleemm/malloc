@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 09:41:22 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/09/23 12:48:48 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/09/23 16:34:16 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <stdlib.h>
 # include <pthread.h>
 # include "../libft/libft.h"
-# include <stdio.h>
 
 # define FLAGS PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANON
 # define FLAGS2 PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANON
