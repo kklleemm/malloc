@@ -6,7 +6,7 @@
 #    By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/12/11 12:00:21 by cdeniau           #+#    #+#              #
-#    Updated: 2015/09/19 11:36:31 by cdeniau          ###   ########.fr        #
+#    Updated: 2015/09/23 12:29:16 by cdeniau          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRC			=		ft_atoi_hex.c \
 					small.c \
 					large.c \
 					header.c \
+					ptr_op.c \
 
 OBJ			=		$(SRC:.c=.o)
 	OBJS		=		$(addprefix $(ODIR), $(OBJ))

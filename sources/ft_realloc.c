@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/15 18:07:06 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/09/22 17:46:17 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/09/23 12:41:46 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int				realloc_checks(void *ptr, char type)
 
 	if (type != 'L')
 	{
-		header = (t_header *)ptr - 1;	
+		header = (t_header *)ptr - 1;
 		if (header->flg == 1 || header->flg == 1337)
 			return (1);
 	}

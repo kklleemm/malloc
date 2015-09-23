@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/05 09:41:22 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/09/22 15:25:06 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/09/23 12:48:48 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct		s_page
 }					t_page;
 
 extern t_page		g_page;
-pthread_mutex_t 	g_lock;
+pthread_mutex_t		g_lock;
 
 void				free(void *ptr);
 void				print_mem(void *mem);
@@ -75,7 +75,9 @@ void				*set_header(void *firstblock, size_t size);
 void				*realloc(void *ptr, size_t size);
 void				*malloc(size_t size);
 void				*ft_malloc_tiny(size_t size);
+void				*find_ptr_t(t_header *header);
 void				*ft_malloc_small(size_t size);
+void				*find_ptr_s(t_header *header);
 void				*ft_malloc_large(size_t size);
 t_tiny				*ft_new_tiny(void);
 t_small				*ft_new_small(void);
@@ -93,6 +95,8 @@ size_t				small_size(void);
 void				ft_nope(void);
 void				ft_atoi_hex(void *ptr);
 void				ft_atoi_hex_nl(void *ptr);
+int					check_empty_page_t(t_tiny *page);
+int					check_empty_page_s(t_small *page);
 int					modif_mem_size(void **firstblock, int size);
 size_t				mulpagesize(size_t size);
 
