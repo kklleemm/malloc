@@ -6,7 +6,7 @@
 /*   By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/08/16 12:01:56 by cdeniau           #+#    #+#             */
-/*   Updated: 2015/09/22 18:18:20 by cdeniau          ###   ########.fr       */
+/*   Updated: 2015/09/23 11:51:59 by cdeniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,17 @@ void				ft_print_tiny(void)
 		ft_atoi_hex_nl(tiny->firstblock);
 		while (tiny->firstblock)
 		{
-			if (!(tiny->firstblock->size > 0))
-				break ;
-			ft_atoi_hex((void *)(tiny->firstblock) + sizeof(t_header));
-			ft_putstr(" - ");
-			ft_atoi_hex((void *)(tiny->firstblock) +
-					tiny->firstblock->size + sizeof(t_header));
-			ft_putstr(" : ");
-			ft_putnbr(tiny->firstblock->size);
-			ft_putstr(" octets        ");
-			print_mem((void *)(tiny->firstblock) + sizeof(t_header));
+			if (tiny->firstblock->size)
+			{
+				ft_atoi_hex((void *)(tiny->firstblock) + sizeof(t_header));
+				ft_putstr(" - ");
+				ft_atoi_hex((void *)(tiny->firstblock) +
+						tiny->firstblock->size + sizeof(t_header));
+				ft_putstr(" : ");
+				ft_putnbr(tiny->firstblock->size);
+				ft_putstr(" octets        ");
+				print_mem((void *)(tiny->firstblock) + sizeof(t_header));
+			}
 			tiny->firstblock = tiny->firstblock->next;
 		}
 		tiny = tiny->next;
