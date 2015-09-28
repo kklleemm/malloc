@@ -6,7 +6,7 @@
 #    By: cdeniau <cdeniau@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/12/11 12:00:21 by cdeniau           #+#    #+#              #
-#    Updated: 2015/09/23 12:29:16 by cdeniau          ###   ########.fr        #
+#    Updated: 2015/09/23 15:23:16 by cdeniau          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,56 +14,51 @@ ifeq ($(HOSTTYPE),)
 	HOSTTYPE := $(shell uname -m)_$(shell uname -s)
 endif
 
-NAME		=		libft_malloc_$(HOSTTYPE).so
-LS			=		libft_malloc.so
+NAME			=		libft_malloc_$(HOSTTYPE).so
+LS				=		libft_malloc.so
+CC				=		gcc
+CFLAGS			=		-Wall -Werror -Wextra
+SRCDIR			=		./sources/
+SRCO			=		$(SRC:.c=.o)
+ODIR			=		./includes/
+LIB				=		./libft/libft.a
+INC				=		-I./includes -I./libft/includes
+LINK			=		-Llibft -lft
+SRC				=		ft_atoi_hex.c \
+						malloc.c \
+						ft_free.c \
+						ft_realloc.c \
+						ft_print.c \
+						tiny.c \
+						small.c \
+						large.c \
+						header.c \
+						ptr_op.c
 
-CC			=		gcc
-CFLAGS		=		-Wall -Werror -Wextra
-SRCDIR		=		./sources/
-SRCO		=		$(SRC:.c=.o)
-	ODIR		=		./includes/
-	LIB			=		./libft/libft.a
-	INC			=		-I./includes -I./libft/includes
-	LINK		=		-Llibft -lft
+OBJ				=		$(SRC:.c=.o)
+OBJS			=		$(addprefix $(ODIR), $(OBJ))
 
-SRC			=		ft_atoi_hex.c \
-					malloc.c \
-					ft_free.c \
-					ft_realloc.c \
-					ft_print.c \
-					tiny.c \
-					small.c \
-					large.c \
-					header.c \
-					ptr_op.c \
+all				:		$(LIB) $(NAME)
 
-OBJ			=		$(SRC:.c=.o)
-	OBJS		=		$(addprefix $(ODIR), $(OBJ))
+$(NAME)			:		$(OBJS)
+						$(CC) -shared -o $(NAME) $^ $(LINK) 
+						ln -s $(NAME) $(LS)
 
-all			:		$(LIB) $(NAME)
+$(ODIR)%.o		:		$(SRCDIR)%.c
+						mkdir -p $(ODIR)
+						$(CC) $(CFLAGS) -c $^ $(INC) -o $@
 
-$(NAME)		:		$(OBJS)
-	$(CC) -shared -o $(NAME) $^ $(LINK) 
-	ln -s $(NAME) $(LS)
+$(LIB)			:
+						@make -C libft
 
-$(ODIR)%.o	:		$(SRCDIR)%.c
-	mkdir -p $(ODIR)
-	$(CC) $(CFLAGS) -c $^ $(INC) -o $@
+clean			:
+						/bin/rm -f $(addprefix $(ODIR), $(OBJ)) 
+						make -C ./libft clean
 
-$(LIB)		:
-	@make -C libft
+fclean			:		clean
+						/bin/rm -rf $(LS)
+						make -C ./libft fclean
+						/bin/rm -rf $(NAME)
+						/bin/rm -rf test
 
-clean		:
-	/bin/rm -f $(addprefix $(ODIR), $(OBJ)) 
-	make -C ./libft clean
-
-fclean		:		clean
-	/bin/rm -rf $(LS)
-	make -C ./libft fclean
-	/bin/rm -rf $(NAME)
-	/bin/rm -rf test
-
-re			:		fclean all
-
-test		:		re
-	gcc $(CFLAGS) -o test main.c $(LINK) $(NAME) $(INC) -g
+re				:		fclean all
